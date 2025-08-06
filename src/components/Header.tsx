@@ -6,7 +6,7 @@ const menuItems = [
   { label: "Our Services", href: "/our-services" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Tax Optimized Income", href: "/tax-optimized-income" },
-  { label: "FAQ's", href: "/faq" },
+  { label: "FAQ's", href: "/faqs" },
 ];
 
 const MenuIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -36,7 +36,6 @@ const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
 
-  // close if click outside mobile panel
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (open && panelRef.current && !panelRef.current.contains(e.target as Node)) {
@@ -68,7 +67,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <nav className="hidden md:flex items-center gap-8 text-md font-medium">
             {menuItems.map((m) => (
               <a
                 key={m.href}
@@ -80,7 +79,7 @@ const Header: React.FC = () => {
             ))}
 
           </nav>
-          <div className="post-a-job">
+          <div className="post-a-job hidden md:block">
             <a
               href="/post-job"
               className="ml-2 inline-block px-4 py-2 font-semibold text-white transition post-job-button"
