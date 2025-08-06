@@ -1,0 +1,103 @@
+---
+import "@styles/how-it-works.scss";
+import "@styles/global.css";
+import HeroSection from '@components/HeroSection.astro';
+
+const steps = [
+  {
+    number: 1,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-1.jpg',
+    title: "Browse Job Listings",
+    description: [
+       "Visit our job board to explore available remote positions from UK and European tech companies.",
+       "Use our search function to filter jobs by category, skill requirements, or company.",
+       "Each job listing includes detailed information about the role, company, and application process.",
+       "No account is required to browse jobs - dive right in!"
+    ],
+    imagePosition: "left",
+  },
+  {
+    number: 2,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-2.jpg',
+    title: "Create Your Profile",
+    description: [
+       "When you find a job that interests you, click on the listing to view full details.",
+      "Review the job description, requirements, and company information carefully.",
+      "If you're ready to apply, click the \"Apply Now\" button."
+    ],
+    imagePosition: "right",
+  },
+  {
+    number: 3,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-3.jpg',
+    title: "Take an Interview",
+    description:[
+      "At this point, you'll be prompted to create an account if you haven't already.",
+      "Fill in your basic information, including your name and email address.",
+      "Verify your email address to activate your account."
+    ],
+    imagePosition: "left",
+  },
+  {
+    number: 4,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-4.jpg',
+    title: "Get Found",
+    description: [
+      "After creating your account, you'll be guided to complete your profile.",
+      "Upload your resume and add details about your skills, experience, and job preferences.",
+      "The more complete your profile, the better we can match you with suitable opportunities."
+    ],
+    imagePosition: "right",
+  },
+];
+---
+<HeroSection
+  pageTitle="How It Works"
+  crumb="How It Works"
+/>
+<section aria-label="How it works" class="how-it-works py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="title">How It Works</h2>
+      <p class="subtitle">
+        A quick, clear journey from discovery to being matched with remote
+        opportunities.
+      </p>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col gap-16 mt-12">
+        {
+          steps.map((step) => (
+            <div
+              id={`step-${step.number}`}
+              class={`step flex flex-col md:flex-row items-center gap-4 reveal ${
+                step.imagePosition === "right" ? "card-reverse" : ""
+              }`}
+            >
+              <div class="visual flex-1">
+                <div class="image-wrapper" aria-hidden="true">
+                  <div class="image-gradient"></div>
+                  <img src={step.imageSrc} alt={`Step ${step.number} - ${step.title}`} />
+                </div>
+              </div>
+              <div class="content flex-1 flex items-center">
+                <div class="card">
+                  <div class="number-badge" aria-label={`Step ${step.number}`}>
+                    {step.number}
+                  </div>
+                  <h3 class="step-title">{step.title}</h3>
+                  <ul>
+                    {step.description.map((desc) => (
+                      <li class="step-desc"><svg aria-hidden="true" class="e-font-icon-svg e-fas-check-square" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M400 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zm-204.686-98.059l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.248-16.379-6.249-22.628 0L184 302.745l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.25 16.379 6.25 22.628.001z"></path></svg> {desc}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
