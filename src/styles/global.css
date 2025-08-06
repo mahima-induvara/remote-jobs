@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+a{
+    text-decoration: none;
+    transition: color .2s;
+    
+}
+a:hover{
+    color: #e81b39;
+    text-decoration: none;
+}
+
+.post-job-button{
+    background-color: #e81b39;
+    font-family: "Quicksand", sans-serif;
+    font-size: 14px;
+    font-weight:600;
+    line-height: 20.3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e81b39;
+    border-radius: 8px;
+    color: #fff;
+    padding: 10px 30px;
+    transition:  transform .2s ease-in-out;
+}
+.post-job-button:hover{
+    transform: scale(.9);
+    color: #fff;
+    text-decoration: none;
+}

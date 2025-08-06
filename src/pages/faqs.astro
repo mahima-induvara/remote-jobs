@@ -1,0 +1,190 @@
+---
+import "../styles/global.css";
+import "@styles/faq.scss";
+import Layout from "@layouts/Layout.astro";
+import HeroSection from '@components/HeroSection.astro';
+
+
+const faqsGeneral  = [
+  {
+    question: "What is RemoteJobsInAsia.com?",
+    answer:
+      "A: RemoteJobsInAsia.com is a specialized job platform connecting eligible individuals in Sri Lanka with remote job opportunities in UK and European tech companies, particularly innovative startups and AI companies.",
+  },
+  {
+    question: "Is RemoteJobsInAsia.com only for IT professionals?",
+    answer:
+      "A: While we have many opportunities in the tech sector, we also cater to various other professions including finance, marketing, HR, design, and administrative roles.",
+  },
+  {
+    question: "Do I need to pay to use RemoteJobsInAsia.com?",
+    answer:
+      "A: No, our platform is completely free for job seekers. We make our revenue through our partnerships with employers.",
+  },
+  {
+    question: "What means “Print special chars as HTML entities”?",
+    answer:
+      "Designer at work who don’t have any content for their product yet have the possibility to insert a dummy text into their design to judge on the arrangement of text on their site, on readability or on fonts and sizes. A dummy text is also helpful to present a design without content to a client to show how the text is going to look like without irritating the client by real texts.",
+  },
+];
+
+const faqEligibility = [
+    {
+        question: "Who can apply for jobs on RemoteJobsInAsia.com?",
+        answer:
+        "A: Our jobs are open to individuals who are either residents of Sri Lanka or have the right to work in Sri Lanka. This includes Sri Lankan citizens, permanent residents, and those with valid work visas",
+    },
+    {
+        question: "I'm not a Sri Lankan citizen. Can I use your platform?",
+        answer:
+        "A: Yes, as long as you have the legal right to work in Sri Lanka, you are eligible to apply for jobs on our platform, regardless of your citizenship",
+    },
+    {
+        question: "Do I need to be in a specific city in Sri Lanka to apply?",
+        answer:
+        "A: No, you can be located anywhere in Sri Lanka. As long as you have a reliable internet connection for remote work and meet the eligibility criteria, you can apply.",
+    },
+    {
+        question: "What kind of experience do I need to apply for jobs on your platform?",
+        answer:
+        "A: The experience requirements vary by position. We have opportunities for fresh graduates as well as seasoned professionals.",
+    },
+    {
+        question: "Do I need to know a European language to apply for these remote jobs?",
+        answer:
+        "A: Most of our job listings require fluency in English. Some positions might require knowledge of other European languages, but this will be clearly stated in the job description.",
+    }
+]
+
+const AllFaqs = [
+  {
+    title: "General Questions",
+    faqs: faqsGeneral,
+  },
+  {
+    title: "Eligibility Criteria",
+    faqs: faqEligibility,
+  },
+];
+---
+<Layout> 
+<HeroSection
+  pageTitle="Frequently Asked Questions"
+  crumb="FAQs"
+/>
+<section class="faq-section py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <p class="intro">
+      Welcome to RemoteJobsInAsia.com's FAQ page. Here, we answer common questions about our platform and how we help eligible individuals in Sri Lanka find remote jobs with UK and European tech companies.
+    </p>
+    {AllFaqs.map((all, index) => (
+    <div id={`faq-${index}`}>
+        <h2 class="heading">{all.title}</h2>
+        <div class="accordion">
+        {all.faqs.map((f, idx) => (
+            <div class="item">
+            <button
+                type="button"
+                class="question"
+                aria-expanded={idx === 0 ? "true" : "false"}
+                aria-controls={`answer-${index}-${idx}`}
+                id={`question-${index}-${idx}`}
+            >
+                <span class="q-text">{f.question}</span>
+                <span class="icon" aria-hidden="true">
+                <!-- plus -->
+                <svg
+                    class="plus"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                    d="M8 3.33334V12.6667M3.33333 8H12.6667"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    />
+                </svg>
+                <!-- minus -->
+                <svg
+                    class="minus"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                    d="M3.33333 8H12.6667"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    />
+                </svg>
+                </span>
+            </button>
+            <div
+                class={`answer-wrapper ${idx === 0 ? "expanded" : ""}`}
+                id={`answer-${index}-${idx}`}
+                role="region"
+                aria-labelledby={`question-${index}-${idx}`}
+            >
+                <p class="answer-text">{f.answer}</p>
+            </div>
+            </div>
+        ))}
+        </div>
+    </div>
+    ))}
+  </div>
+
+  <script type="module">
+    (function () {
+      const accordions = document.querySelectorAll('[id^="faq-"]');
+      
+      accordions.forEach((accordion) => {
+        const answerWrappers = accordion.querySelectorAll(".answer-wrapper");
+        answerWrappers.forEach((wrapper) => {
+          if (wrapper.classList.contains("expanded")) {
+            wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+          }
+        });
+
+        // Add click event listener to each accordion
+        accordion.addEventListener("click", (e) => {
+          const btn = e.target.closest(".question");
+          if (!btn) return;
+          
+          const isExpanded = btn.getAttribute("aria-expanded") === "true";
+          
+          // Collapse all items in this accordion
+          accordion.querySelectorAll(".question").forEach((q) => {
+            q.setAttribute("aria-expanded", "false");
+          });
+          accordion.querySelectorAll(".answer-wrapper").forEach((a) => {
+            a.classList.remove("expanded");
+            a.style.maxHeight = null;
+          });
+
+          // If the clicked item wasn't expanded, expand it
+          if (!isExpanded) {
+            btn.setAttribute("aria-expanded", "true");
+            const panelId = btn.getAttribute("aria-controls");
+            const panel = document.getElementById(panelId);
+            if (panel) {
+              panel.classList.add("expanded");
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</section>
+
+</Layout>

@@ -1,0 +1,191 @@
+---
+import "../styles/global.css";
+import "../styles/about.scss";
+import HeroSection from '@components/HeroSection.astro';
+import Layout from "@layouts/Layout.astro";
+import Team from '@assets/Main-Frame-aboutus.png';
+import Office from '@assets/Main-Frame-aboutus-2.png';
+---
+<Layout>
+  <HeroSection
+    pageTitle="About Us"
+    crumb="About Us"
+  />
+    <!-- Introduction / Vision -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-7">
+            <p class="intro">
+              Welcome to RemoteJobsInAsia.com, your gateway to exciting remote opportunities from leading UK and European employers.
+            </p>
+            <div class="mt-8">
+              <h2 class="section-heading">Our Vision</h2>
+              <p class="section-text">
+                At RemoteJobsInAsia.com, we bridge the gap between talented professionals in Asia and innovative companies in the UK and Europe. Our mission is to connect skilled individuals from countries like Sri Lanka, India, Pakistan, and Bangladesh with cutting-edge remote jobs in tech and AI startups.
+              </p>
+            </div>
+          </div>
+          <div class="lg:col-span-5">
+            <div class="image-card">
+              <div class="image-wrapper">
+                <!-- Dummy image -->
+                <img src={Team.src} alt="Team working" />
+                <!-- Overlay badges -->
+                <!-- <div class="overlay-badges">
+                  <div class="badge salary">$1000-$1500</div>
+                  <div class="badge verified">96% <span class="small">Satisfaction</span></div>
+                  <div class="badge tag">Accounting</div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Offer / Why Choose Us -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center mb-12">
+          <h2 class="section-heading">What We Offer</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="feature-card">
+            <div class="icon-wrapper">
+              <!-- calendar icon -->
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Curated Job Listings</h3>
+              <p class="feature-text">
+                We carefully select remote positions from UK and European employers, with a focus on innovative tech and AI startups.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="icon-wrapper">
+              <!-- globe icon -->
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20a15.3 15.3 0 0 1 0-20z"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Focus on Key Asian Countries</h3>
+              <p class="feature-text">
+                While we cater to all of Asia, we have a special emphasis on opportunities for professionals in Sri Lanka, India, Pakistan, and Bangladesh.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="icon-wrapper">
+              <!-- innovation / rocket -->
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19l-3 3l1-4l-3-3l4-1l3-3l1 4l3 3l-4 1z"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Access to Innovation</h3>
+              <p class="feature-text">
+                We provide Asian talent with unique access to some of the most dynamic and forward-thinking companies in Europe.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto text-center mb-12">
+          <h2 class="section-heading">Why Choose Us?</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="feature-card">
+            <div class="icon-wrapper">
+              <!-- cube icon -->
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.732l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.732l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Specialized Platform</h3>
+              <p class="feature-text">
+                We focus exclusively on connecting Asian talent with remote opportunities from UK and European tech innovators.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="icon-wrapper">
+              <!-- document / quality -->
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="2" width="6" height="8" rx="1"></rect>
+                <path d="M4 22h16v-4H4v4z"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Quality Opportunities</h3>
+              <p class="feature-text">
+                Our job listings come from vetted, innovative companies offering competitive compensation and genuine remote work arrangements.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="icon-wrapper">
+              <!-- diamond / cultural bridge -->
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 3l12 0l3 7l-9 11l-9-11l3-7z"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Cultural Bridge</h3>
+              <p class="feature-text">
+                We help Asian professionals navigate the European job market and assist European companies in tapping into the rich talent pool of Asia.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Commitment -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5">
+            <div class="image-card large">
+              <img src={Office.src} alt="Office teamwork" />
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <h2 class="section-heading">Our Commitment</h2>
+            <p class="section-text mb-6">
+              We are dedicated to:
+            </p>
+            <ul class="commitment-list">
+              <li>
+                <span class="dot">.</span>
+                Fostering innovation by connecting Asian talent with cutting-edge European tech and AI startups.
+              </li>
+              <li>
+                <span class="dot">.</span>
+                Continuously improving our platform to better serve both job seekers and employers.
+              </li>
+              <li>
+                <span class="dot">.</span>
+                Providing resources to help Asian professionals thrive in remote work environments with European companies.
+              </li>
+            </ul>
+            <p class="section-text mt-4">
+              Join us in our mission to create a global tech ecosystem that transcends borders. Whether you're an Asian professional looking to work with European innovators or a UK/European startup seeking top Asian talent, RemoteJobsInAsia.com is your ideal partner.
+Embrace the future of work with us and be part of the cross-continental tech revolution
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </section>
+</Layout>
