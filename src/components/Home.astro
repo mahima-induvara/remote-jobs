@@ -1,6 +1,14 @@
 ---
 import "@styles/global.css";
 import "@styles/site.scss";
+import Jobs from "@components/Jobs"
+import type { JobData } from "@components/Jobs";
+const DataSet: JobData[] = [
+  {id: 20564, title: "IT Systems & Support Specialist", company: "Acme Testing Ltd", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-01", level: "Senior", type: "Full-time", experience: "5+ years"},
+  {id: 20565, title: "Product Manager", company: "Acme Testing Ltd", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-02", level: "Senior", type: "Full-time", experience: "5+ years"},
+  {id: 20566, title: ".Senior Bookkeeper", company: "Acme Tech", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-03", level: "Senior", type: "Full-time", experience: "5+ years"},
+  {id: 20567, title: "Senior .NET Software Engineer", company: "CodeFactory", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-04", level: "Senior", type: "Full-time", experience: "5+ years"}
+]
 const hotJobs = [
   { id: 1, title: "Senior QA Tester", company: "Acme Testing Ltd", salary: "1k–2k USD/mo", location: "Remote" },
   { id: 2, title: "Senior QA Engineer", company: "Acme Testing Ltd", salary: "600–2k USD/mo", location: "Remote" },
@@ -16,10 +24,30 @@ const designJobs = [
   { id: 8, title: "Senior UX/UI Designer", company: "Lemonia.io", salary: "40–60 USD/hr", location: "Remote" }
 ];
 const categories = [
-  { id: 'it', name: 'IT (Software, Design)', count: 4 },
-  { id: 'marketing', name: 'Marketing', count: 0 },
-  { id: 'finance', name: 'Finance', count: 5 },
-  { id: 'hr', name: 'HR & Customer Support', count: 3 }
+  { 
+    id: 'it', 
+    name: 'IT (Software, Design)', 
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/><path d="m9 10 2 2 4-4"/></svg>`, 
+    count: 4 
+  },
+  { 
+    id: 'marketing', 
+    name: 'Marketing', 
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>`, 
+    count: 0 
+  },
+  { 
+    id: 'finance', 
+    name: 'Finance', 
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="m12 18 0-2"/><path d="m12 8 0-2"/></svg>`, 
+    count: 5 
+  },
+  { 
+    id: 'hr', 
+    name: 'HR & Customer Support', 
+    svg: `<svg data-v-6433c584="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>`, 
+    count: 3 
+  }
 ];
 ---
 
@@ -202,31 +230,32 @@ const categories = [
 <!-- Hot New Jobs -->
 <section class="py-16">
   <div class="max-w-7xl mx-auto px-4">
-    <h2 class="section-title">Hot New Jobs</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <h2 class="section-title">New Jobs</h2>
+    <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
       {hotJobs.map(job => (
-        <div key={job.id} class="job-card">
+        <div id={`job-${job.id}`} class="job-card">
           <h3 class="job-title">{job.title}</h3>
           <p class="job-company">{job.company}</p>
           <p class="job-meta">{job.location} • {job.salary}</p>
-          <button class="btn btn-primary mt-4">Apply Now</button>
+          <button class="btn btn-primary mt-4 apply-now">Apply Now</button>
         </div>
       ))}
-    </div>
+    </div> -->
+    <Jobs JobData={DataSet} />
   </div>
 </section>
 
-<!-- Top Engineering Jobs -->
+<!-- Top Recent Jobs -->
 <section class="py-16 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4">
-    <h2 class="section-title">Top Engineering Jobs</h2>
+    <h2 class="section-title">Recent Jobs</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {engJobs.map(job => (
         <div id={`job-${job.id}`} class="job-card">
           <h3 class="job-title">{job.title}</h3>
           <p class="job-company">{job.company}</p>
           <p class="job-meta">{job.location} • {job.salary}</p>
-          <button class="btn btn-primary mt-4">Apply Now</button>
+          <button class="btn btn-primary mt-4 apply-now">Apply Now</button>
         </div>
       ))}
     </div>
@@ -234,7 +263,7 @@ const categories = [
 </section>
 
 <!-- Top Design Jobs -->
-<section class="py-16">
+<!-- <section class="py-16">
   <div class="max-w-7xl mx-auto px-4">
     <h2 class="section-title">Top Design Jobs</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -248,7 +277,7 @@ const categories = [
       ))}
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- Popular Categories -->
 <section class="py-16 bg-gray-50">
@@ -256,13 +285,19 @@ const categories = [
     <h2 class="section-title">Popular Categories</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
       {categories.map(cat => (
-        <div key={cat.id} class="category-card">
+        <div id={`category-${cat.id}`} class="category-card">
+          <div class="category-image-wrapper">
+            <Fragment set:html={cat.svg} />
+          </div>
           <h3 class="category-name">{cat.name}</h3>
           <p class="category-count">{cat.count} open positions</p>
         </div>
       ))}
     </div>
   </div>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:mt-12 mt-4">
+      <a href="/browse-job-categories" class="btn button-plain">Browse All Categories</a>
+    </div>
 </section>
 
 <!-- How It Works -->
@@ -272,22 +307,19 @@ const categories = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
       <div class="hiw-step">
         <div class="hiw-icon">1</div>
-        <h3>Create a profile</h3>
-        <p>Define your preferences so employers know your strengths.</p>
+        <h3>Browse Job Listings</h3>
+        <p>Visit our job board to explore available remote positions from UK and European tech companies.</p>
       </div>
       <div class="hiw-step">
         <div class="hiw-icon">2</div>
-        <h3>Take an interview</h3>
-        <p>Get AI-boosted feedback and share your results with companies.</p>
+        <h3>Find a Job You Like</h3>
+        <p>Browse profiles, reviews, and proposals then interview top candidates.</p>
       </div>
       <div class="hiw-step">
         <div class="hiw-icon">3</div>
-        <h3>Be found</h3>
-        <p>Let companies discover your verified profile and hire you faster.</p>
+        <h3>Complete Profile & Apply for job</h3>
+        <p>Once your profile is complete, you can proceed with your application.</p>
       </div>
-    </div>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:mt-12 mt-4">
-      <a href="/browse-job-categories" class="btn button-plain">Browse All Categories</a>
     </div>
   </div>
 </section>

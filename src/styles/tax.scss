@@ -1,6 +1,7 @@
 @use '@styles/variables/typography' as *;
 @use '@styles/variables/colors' as *;
 @use '@styles/mixins/mixins' as *;
+@use '@styles/mixins/support' as *;
 
 $shadow-lg: 0 10px 40px rgba(31, 41, 55, 0.06);
 $radius: 10px;
@@ -101,6 +102,11 @@ $radius: 10px;
   }
 
   .help-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     background: #fff;
     padding: 1.5rem;
     border-radius: $radius;
@@ -120,6 +126,7 @@ $radius: 10px;
   .get-started {
     max-width: 760px;
     margin: 0 auto;
+    border-radius: 8px;
     ol {
       margin-bottom: 1.5rem;
       li {

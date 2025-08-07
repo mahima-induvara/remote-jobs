@@ -1,0 +1,90 @@
+
+.jobGrid {
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.jobCard {
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 12px 32px rgba(31, 41, 55, 0.07);
+  transition: all 0.25s ease-in-out;
+  border: 1px solid rgba(31, 41, 55, 0.05);
+  min-height: 160px;
+}
+
+.jobLogo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-right: 1rem;
+}
+
+.jobDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  .jobHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .jobTitle {
+      margin: 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #111827;
+    }
+  }
+
+  .jobInfo {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+
+    svg{
+      width: 20px;
+      height: 20px;
+      fill: #6b7280;
+      margin-right: 0.25rem;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 0.25rem;
+      fill: #e81b39;
+      flex-shrink: 0;
+    }
+  }
+}
+.jobMoreInfo{
+
+  .jobDate {
+      font-size: 0.875rem;
+      color: #6b7280;
+  }
+  .jobApplyBtn {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #e81b39;
+    background: transparent;
+    color: #e81b39;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(232, 27, 57, 0.05);
+    }
+  }
+}

@@ -1,0 +1,13 @@
+---
+import React from 'react';
+import ApplicationPreviewDemo from '@components/ApplicationPreviewFace';
+import "../styles/global.css";
+import Layout from "@layouts/Layout.astro";
+---
+<Layout>
+    <!-- Render the React preview component as an island -->
+    <ApplicationPreviewDemo client:load />
+</Layout>
+
+
+

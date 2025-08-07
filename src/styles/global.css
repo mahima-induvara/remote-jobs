@@ -29,3 +29,36 @@ a:hover{
     color: #fff;
     text-decoration: none;
 }
+
+    .not-found-section{
+        //background: linear-gradient(135deg, #7c3aed 0%, #ec4899 70%);
+        height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .not-found-section svg{
+        width: 500px;
+        height: auto;
+        margin-bottom: 16px;
+    }
+    @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
+      .not-found-section svg{
+        overflow: hidden;
+        width: 200px;
+        height: auto;
+        margin-bottom: 16px;
+        }
+    }
+    .home-not-found{
+        font-size: 16px;
+        font-weight: 400;
+        color: #fff;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .home-not-found:hover{
+        color: #fff;
+        text-decoration: none;
+    }
