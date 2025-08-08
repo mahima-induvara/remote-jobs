@@ -1,5 +1,5 @@
-import React,{ useState, useRef } from 'react';
-import { User, Calendar, MapPin, Mail, GraduationCap, BriefcaseBusiness, Medal, ClockFading, DollarSign , Languages, BookOpenText , CalendarCheck   } from "lucide-react";
+import React,{ useState } from 'react';
+import { User, MapPin, Mail, GraduationCap, BriefcaseBusiness, Medal, ClockFading, DollarSign , Languages, BookOpenText , CalendarCheck   } from "lucide-react";
 import styles from '@styles/application.module.scss';
 
 type Education = { id: number; institution: string; period: string; certification: string; notes: string; };
@@ -10,14 +10,14 @@ type Props = { jobTitle: string; };
 
 const ApplicationForm: React.FC<Props> = ({ jobTitle }) => {
   // Basic fields
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [ageRange, setAgeRange] = useState('');
-  const [location, setLocation] = useState('');
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [ageRange, setAgeRange] = useState<string>('');
+  const [location, setLocation] = useState<string>('');
   const [languages, setLanguages] = useState<string[]>([]);
-  const [experienceLevel, setExperienceLevel] = useState('');
+  const [experienceLevel, setExperienceLevel] = useState<string>('');
   const [educationLevels, setEducationLevels] = useState<string[]>([]);
-  const [skills, setSkills] = useState('');
+  const [skills, setSkills] = useState<string>('');
   // Dynamic sections
   const [educations, setEducations] = useState<Education[]>([]);
   const [experiences, setExperiences] = useState<Experience[]>([]);

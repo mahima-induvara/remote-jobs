@@ -161,7 +161,7 @@ a {
   text-align: center;
 
   .category-name {
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-weight: 600;
     margin: 0 0 4px;
   }
@@ -288,6 +288,7 @@ a {
     border-radius: 8px 8px 8px 8px;
     padding: 14px 30px 14px 30px;
     cursor: pointer;
+    text-align: center;
     &:hover{
           background-color: rgba(232, 27, 57, 0.95);
         color: rgb(254, 244, 245);
