@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "@styles/postjobs.module.scss";
 import { useState, useRef } from "react";
 export default function PostJobForm() {
@@ -6,6 +6,7 @@ export default function PostJobForm() {
   const jobTitle = useRef<HTMLInputElement>(null);
   const jobLocation = useRef<HTMLInputElement>(null);
   const jobType = useRef<HTMLSelectElement>(null);
+  const jobTypeOptions = useRef<HTMLSelectElement>(null);
   const jobSalary = useRef<HTMLInputElement>(null);
   const jobLevel = useRef<HTMLInputElement>(null);
   const jobExperience = useRef<HTMLInputElement>(null);
@@ -29,10 +30,18 @@ export default function PostJobForm() {
   const companyDescription = useRef<HTMLTextAreaElement>(null);
 
   const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState<string>('');
+  useEffect(() => {
+    const userName = sessionStorage.getItem("userName");
+    if (userName) {
+      setCurrentUser(userName);
+    }
+  }, [])
   const [formData, setFormData] = useState({
     jobTitle: '',
     jobLocation: '',
     jobType: '',
+    jobTypeOptions: '',
     jobSalary: '',
     jobLevel: '',
     jobExperience: '',
@@ -75,7 +84,7 @@ export default function PostJobForm() {
     <section className="max-w-7xl mx-auto px-4 mt-[80px] py-16">
 
         <div className="mb-6 p-4 bg-blue-100 rounded">
-          You are currently signed in as <strong>mahima.levein</strong>.
+          You are currently signed in as <strong>{currentUser}</strong>.
         </div>
 
       <form className="space-y-6">
@@ -119,7 +128,6 @@ export default function PostJobForm() {
             <select
               id="jobType"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              defaultValue="contract-full"
               ref={jobType}
               onChange={() => setFormData({ ...formData, jobType: jobType.current?.value || "" })}
             >
@@ -183,7 +191,6 @@ export default function PostJobForm() {
             <select
               id="jobGender"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              defaultValue="contract-full"
               ref={jobGender}
               onChange={() => setFormData({ ...formData, jobGender: jobGender.current?.value || "" })}
             >
@@ -248,14 +255,17 @@ export default function PostJobForm() {
           <label htmlFor="expectJobType" className="block mb-1 font-semibold">
             Enter Expect job type
           </label>
-          <input
-            type="text"
-            id="expectJobType"
-            placeholder="Choose a category..."
+          <select
+            id="jobTypeOptions"
             className="w-full border border-gray-300 rounded px-3 py-2"
-            //ref={jobType}
-            //onChange={() => setFormData({ ...formData, jobType: jobType.current?.value || "" })}
-          />
+            ref={jobTypeOptions}
+            onChange={() => setFormData({ ...formData, jobTypeOptions: jobTypeOptions.current?.value || "" })}
+          >
+              <option value="">Choose a Job Type</option>
+              <option value="full-time">Full-time</option>
+              <option value="part-time">Part-time</option>
+              <option value="contract">Contract</option>
+            </select>
         </div>
 
         {/* Description */}
@@ -265,7 +275,7 @@ export default function PostJobForm() {
           </label>
           <textarea
             id="description"
-            rows="6"
+            rows={6}
             className="w-full border border-gray-300 rounded px-3 py-2 resize-y"
           ></textarea>
         </div>
@@ -294,7 +304,6 @@ export default function PostJobForm() {
             <input
                 type="email"
                 id="applicationEmail"
-                defaultValue="mahima.levein@gmail.com"
                 className="w-full border border-gray-300 rounded px-3 py-2"
                 ref={applicationEmail}
                 onChange={() => setFormData({ ...formData, applicationEmail: applicationEmail.current?.value || "" })}
@@ -410,7 +419,6 @@ export default function PostJobForm() {
             <select
               id="companyCategory"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              defaultValue=""
               ref={companyCategory}
               onChange={() => setFormData({ ...formData, companyCategory: companyCategory.current?.value || "" })}
             >
@@ -430,7 +438,6 @@ export default function PostJobForm() {
             <select
               id="companyTeamSize"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              defaultValue=""
               value={formData.companyTeamSize}
               ref={companyTeamSize}
               onChange={() => setFormData({ ...formData, companyTeamSize: companyTeamSize.current?.value || "" })}
@@ -479,7 +486,7 @@ export default function PostJobForm() {
           </label>
           <textarea
             id="companyDescription"
-            rows="4"
+            rows={4}
             className="w-full border border-gray-300 rounded px-3 py-2 resize-y"
             ref={companyDescription}
             onChange={() => setFormData({ ...formData, companyDescription: companyDescription.current?.value || "" })}
