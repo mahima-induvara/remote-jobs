@@ -22,21 +22,33 @@ a:hover{
     border-radius: 8px;
     color: #fff;
     padding: 10px 30px;
-    transition:  transform .2s ease-in-out;
+    transition: background .2s ease-in-out;
 }
 .post-job-button:hover{
-    transform: scale(.9);
+    background: rgb(212.1035856574, 21.3964143426, 49.3047808765);
     color: #fff;
     text-decoration: none;
 }
 
     .not-found-section{
-        //background: linear-gradient(135deg, #7c3aed 0%, #ec4899 70%);
+        /* background: linear-gradient(135deg, #7c3aed 0%, #ec4899 70%); */
         height: calc(100vh - 80px);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        position: relative;
+    }
+    section.layer::before {
+        left: -120px;
+        top: 10%;
+        background: radial-gradient(closest-side, #e81b39, transparent);
+    }
+
+    section.layer::after {
+        right: -120px;
+        bottom: 8%;
+        background: radial-gradient(closest-side, #e81b39, transparent);
     }
     .not-found-section svg{
         width: 500px;

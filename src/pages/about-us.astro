@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import "../styles/about.scss";
+import { Image } from 'astro:assets';
 import HeroSection from '@components/HeroSection.astro';
 import Layout from "@layouts/Layout.astro";
 import Team from '@assets/Main-Frame-aboutus.png';
@@ -30,7 +31,7 @@ import Office from '@assets/Main-Frame-aboutus-2.png';
             <div class="image-card">
               <div class="image-wrapper">
                 <!-- Dummy image -->
-                <img src={Team.src} alt="Team working" />
+                <Image src={Team} inferSize loading="lazy" alt="Team working" />
                 <!-- Overlay badges -->
                 <!-- <div class="overlay-badges">
                   <div class="badge salary">$1000-$1500</div>
@@ -139,7 +140,7 @@ import Office from '@assets/Main-Frame-aboutus-2.png';
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div class="lg:col-span-5">
             <div class="image-card large">
-              <img src={Office.src} alt="Office teamwork" />
+              <Image src={Office} inferSize loading="lazy" alt="Office teamwork" />
             </div>
           </div>
           <div class="lg:col-span-7">

@@ -6,7 +6,7 @@ import type { JobData } from "@components/Jobs";
 const DataSet: JobData[] = [
   {id: 20564, title: "IT Systems & Support Specialist", company: "Acme Testing Ltd", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-01", level: "Senior", type: "Full-time", experience: "5+ years"},
   {id: 20565, title: "Product Manager", company: "Acme Testing Ltd", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-02", level: "Senior", type: "Full-time", experience: "5+ years"},
-  {id: 20566, title: ".Senior Bookkeeper", company: "Acme Tech", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-03", level: "Senior", type: "Full-time", experience: "5+ years"},
+  {id: 20566, title: "Senior Bookkeeper", company: "Acme Tech", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-03", level: "Senior", type: "Full-time", experience: "5+ years"},
   {id: 20567, title: "Senior .NET Software Engineer", company: "CodeFactory", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-04", level: "Senior", type: "Full-time", experience: "5+ years"}
 ]
 const hotJobs = [
@@ -56,133 +56,135 @@ const categories = [
   <div class="max-w-7xl mx-auto">
     <h1 class="hero-title mb-4">Find The Best Paid Remote Jobs In Asia</h1>
     <p class="hero-subtitle mb-8">Exciting opportunities across Software, Design, IT, Marketing, Finance, HR & Customer support with leading employers in UK & Europe.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-4">
-      <button class="btn btn-primary">All Categories</button>
-      <button class="btn btn-outline">Post a Job</button>
-    </div>
+
   </div>
-</section>
-
-<!-- Filter Bar -->
-<section class="filter-bar py-8">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="relative bg-white rounded-xl shadow-md overflow-hidden filter-wrapper">
-      <form class="flex flex-col lg:flex-row gap-4 items-start p-4">
-        <!-- keyword + location -->
-        <div class="flex-1 flex flex-col sm:flex-row gap-3 w-full">
-          <div class="flex-1 min-w-0">
-            <label class="sr-only" for="keyword">Job title or keywords</label>
-            <div class="input-group">
-              <span class="input-icon" aria-hidden>
-                <!-- magnifier -->
-                <svg width="16" height="16" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M16 16l4 4"></path></svg>
-              </span>
-              <input id="keyword" type="text" placeholder="Job title or keywords" class="filter-input w-full" />
+  <!-- Filter Bar -->
+  <section class="filter-bar py-8">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="relative bg-white rounded-xl shadow-md overflow-hidden filter-wrapper">
+        <form class="flex flex-col lg:flex-row gap-4 items-start p-4">
+          <!-- keyword + location -->
+          <div class="flex-1 flex flex-col sm:flex-row gap-3 w-full">
+            <div class="flex-1 min-w-0">
+              <label class="sr-only" for="keyword">Job title or keywords</label>
+              <div class="input-group">
+                <span class="input-icon" aria-hidden="true">
+                  <!-- magnifier -->
+                  <svg width="16" height="16" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M16 16l4 4"></path></svg>
+                </span>
+                <input id="keyword" type="text" placeholder="Job title or keywords" class="filter-input w-full" />
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <label class="sr-only" for="location">Location</label>
+              <div class="input-group">
+                <span class="input-icon" aria-hidden="true">
+                  <!-- location pin -->
+                  <svg width="16" height="16" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+                </span>
+                <input id="location" type="text" placeholder="Anywhere" class="filter-input w-full" />
+              </div>
             </div>
           </div>
-          <div class="flex-1 min-w-0">
-            <label class="sr-only" for="location">Location</label>
-            <div class="input-group">
-              <span class="input-icon" aria-hidden>
-                <!-- location pin -->
-                <svg width="16" height="16" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
-              </span>
-              <input id="location" type="text" placeholder="Anywhere" class="filter-input w-full" />
+
+          <!-- actions and advanced toggle -->
+          <div class="flex flex-col sm:flex-row gap-3 items-start lg:items-center">
+            <div class="flex gap-2 flex-wrap">
+              <button type="button" class="btn btn-secondary" id="toggle-advanced">Filters ▾</button>
+              <button type="submit" class="btn btn-primary">Search</button>
+              <button type="reset" class="text-sm p-2 text-orange-600 cursor-pointer clear_button">Clear</button>
             </div>
           </div>
-        </div>
 
-        <!-- actions and advanced toggle -->
-        <div class="flex flex-col sm:flex-row gap-3 items-start lg:items-center">
-          <div class="flex gap-2 flex-wrap">
-            <button type="button" class="btn btn-secondary" id="toggle-advanced">Filters ▾</button>
-            <button type="submit" class="btn btn-primary">Search</button>
-            <button type="reset" class="text-sm text-orange-600 hover:underline ml-2">Clear</button>
-          </div>
-        </div>
-
-        <!-- advanced filters (desktop expandable) -->
-        <div class="advanced-filters w-full mt-4 hidden-toggle lg:flex flex-wrap gap-4" id="advanced-filters">
-          <div class="flex-1 min-w-[160px]">
-            <label class="block text-xs font-semibold mb-1" for="department">Department / Specialism</label>
-            <select id="department" class="filter-select w-full">
-              <option value="">All Departments</option>
-              <option>Administration and Secretarial</option>
-              <option>Finance</option>
-              <option>HR</option>
-              <option>Information Technology</option>
-              <option>Medical</option>
-              <option>Projects</option>
-            </select>
-          </div>
-          <div class="flex-1 min-w-[160px]">
-            <label class="block text-xs font-semibold mb-1" for="experience">Experience Level</label>
-            <select id="experience" class="filter-select w-full">
-              <option value="">Any</option>
-              <option>0-2 years</option>
-              <option>2-4 years</option>
-              <option>5-10 years</option>
-            </select>
-          </div>
-          <div class="flex-1 min-w-[160px]">
-            <label class="block text-xs font-semibold mb-1" for="contract">Contract Type</label>
-            <select id="contract" class="filter-select w-full">
-              <option value="">Any</option>
-              <option>Contract - Part time</option>
-              <option>Permanent - Full time</option>
-            </select>
-          </div>
-        </div>
-      </form>
-
-      <!-- mobile off-canvas drawer -->
-      <div class="mobile-drawer fixed inset-0 bg-black/40 backdrop-blur-sm z-30 hidden-toggle mt-[85px]" id="mobile-drawer">
-        <div class="drawer-panel bg-white w-80 h-full p-6 overflow-auto">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="font-semibold text-lg">Filters</h3>
-            <button id="close-drawer" aria-label="Close filters">✕</button>
-          </div>
-          <div class="space-y-4">
-            <div>
-              <label class="block text-xs font-semibold mb-1" for="mobile-department">Department / Specialism</label>
-              <select id="mobile-department" class="filter-select w-full">
+          <!-- advanced filters (desktop expandable) -->
+          <div class="advanced-filters w-full mt-4 hidden-toggle lg:flex flex-wrap gap-4" id="advanced-filters">
+            <div class="flex-1 min-w-[160px]">
+              <label class="block text-xs font-semibold mb-1" for="department">Department / Specialism</label>
+              <select id="department" class="filter-select w-full">
                 <option value="">All Departments</option>
                 <option>Administration and Secretarial</option>
                 <option>Finance</option>
                 <option>HR</option>
+                <option>Information Technology</option>
+                <option>Medical</option>
+                <option>Projects</option>
               </select>
             </div>
-            <div>
-              <label class="block text-xs font-semibold mb-1" for="mobile-experience">Experience Level</label>
-              <select id="mobile-experience" class="filter-select w-full">
+            <div class="flex-1 min-w-[160px]">
+              <label class="block text-xs font-semibold mb-1" for="experience">Experience Level</label>
+              <select id="experience" class="filter-select w-full">
                 <option value="">Any</option>
                 <option>0-2 years</option>
                 <option>2-4 years</option>
                 <option>5-10 years</option>
               </select>
             </div>
-            <div>
-              <label class="block text-xs font-semibold mb-1" for="mobile-contract">Contract Type</label>
-              <select id="mobile-contract" class="filter-select w-full">
+            <div class="flex-1 min-w-[160px]">
+              <label class="block text-xs font-semibold mb-1" for="contract">Contract Type</label>
+              <select id="contract" class="filter-select w-full">
                 <option value="">Any</option>
                 <option>Contract - Part time</option>
                 <option>Permanent - Full time</option>
               </select>
             </div>
-            <div>
-              <label class="block text-xs font-semibold mb-1" for="mobile-work-mode">Work Mode</label>
-              <select id="mobile-work-mode" class="filter-select w-full">
-                <option value="">Any</option>
-                <option>Hybrid</option>
-                <option>Remote</option>
-              </select>
+          </div>
+        </form>
+
+        <!-- mobile off-canvas drawer -->
+        <div class="mobile-drawer fixed inset-0 bg-black/40 backdrop-blur-sm z-30 hidden-toggle mt-[85px]" id="mobile-drawer">
+          <div class="drawer-panel bg-white w-80 h-full p-6 overflow-auto">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold text-lg">Filters</h3>
+              <button id="close-drawer" aria-label="Close filters">✕</button>
             </div>
-            <div>
-              <button class="btn btn-primary w-full">Apply Filters</button>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold mb-1" for="mobile-department">Department / Specialism</label>
+                <select id="mobile-department" class="filter-select w-full">
+                  <option value="">All Departments</option>
+                  <option>Administration and Secretarial</option>
+                  <option>Finance</option>
+                  <option>HR</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold mb-1" for="mobile-experience">Experience Level</label>
+                <select id="mobile-experience" class="filter-select w-full">
+                  <option value="">Any</option>
+                  <option>0-2 years</option>
+                  <option>2-4 years</option>
+                  <option>5-10 years</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold mb-1" for="mobile-contract">Contract Type</label>
+                <select id="mobile-contract" class="filter-select w-full">
+                  <option value="">Any</option>
+                  <option>Contract - Part time</option>
+                  <option>Permanent - Full time</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold mb-1" for="mobile-work-mode">Work Mode</label>
+                <select id="mobile-work-mode" class="filter-select w-full">
+                  <option value="">Any</option>
+                  <option>Hybrid</option>
+                  <option>Remote</option>
+                </select>
+              </div>
+              <div>
+                <button class="btn btn-primary w-full">Apply Filters</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+  <div class="max-w-7xl mx-auto">
+     <div class="flex flex-col sm:flex-row gap-4 justify-center mt-0">
+      <a href="/browse-job-categories" class="btn btn-primary">All Categories</a>
+      <a href="/login" class="btn btn-outline">Post a Job</a>
     </div>
   </div>
 </section>

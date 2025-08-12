@@ -214,6 +214,15 @@ a {
       background: #fff;
     }
   }
+  .clear_button{
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s;
+    &:hover{
+      background-color: #e81b3a1f;
+      color: #ffffff;
+    }
+  }
 
   .input-group {
     position: relative;
