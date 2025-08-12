@@ -105,12 +105,13 @@ $transition: all .25s ease;
           display: flex;
           gap: 12px;
           align-items: center;
-          font-size: 0.85rem;
           a {
-            color: $clr-text;
+            font-size: 15px;
             text-decoration: none;
+            color: $clr-text;
+            font-weight: 500;
             &:hover {
-              text-decoration: underline;
+                color: rgb(212.1035856574, 21.3964143426, 49.3047808765);
             }
           }
           .sep {

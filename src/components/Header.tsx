@@ -81,7 +81,7 @@ const Header: React.FC = () => {
           </nav>
           <div className="post-a-job hidden md:block">
             <a
-              href="/post-a-job"
+              href="/login"
               className="ml-2 inline-block px-4 py-2 font-semibold text-white transition post-job-button"
             >
                 
@@ -144,7 +144,7 @@ const Header: React.FC = () => {
           </div>
           <div>
             <a
-              href="/post-job"
+              href="/login"
               onClick={() => setOpen(false)}
               className="block w-full text-center px-4 py-2 rounded-md bg-red-500 text-white font-semibold hover:bg-red-600 transition"
             >
