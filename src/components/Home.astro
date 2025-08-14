@@ -1,54 +1,43 @@
 ---
-import "@styles/global.css";
+export const prerender = true;
 import "@styles/site.scss";
 import Jobs from "@components/Jobs"
 import type { JobData } from "@components/Jobs";
-const DataSet: JobData[] = [
-  {id: 20564, title: "IT Systems & Support Specialist", company: "Acme Testing Ltd", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-01", level: "Senior", type: "Full-time", experience: "5+ years"},
-  {id: 20565, title: "Product Manager", company: "Acme Testing Ltd", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-02", level: "Senior", type: "Full-time", experience: "5+ years"},
-  {id: 20566, title: "Senior Bookkeeper", company: "Acme Tech", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-03", level: "Senior", type: "Full-time", experience: "5+ years"},
-  {id: 20567, title: "Senior .NET Software Engineer", company: "CodeFactory", logoUrl: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png", date: "2023-10-04", level: "Senior", type: "Full-time", experience: "5+ years"}
-]
-const hotJobs = [
-  { id: 1, title: "Senior QA Tester", company: "Acme Testing Ltd", salary: "1k–2k USD/mo", location: "Remote" },
-  { id: 2, title: "Senior QA Engineer", company: "Acme Testing Ltd", salary: "600–2k USD/mo", location: "Remote" },
-  { id: 3, title: ".NET Software Engineer", company: "Acme Tech", salary: "1k–3k USD/mo", location: "Remote" }
-];
+import type { Categories } from '@lib/types';
+import { fetchJobs } from "@lib/wp";
+import { fetchCategories } from "@lib/wp";
+import { getCategoryImage } from '../utils/categories';
+
+const rows = await fetchJobs(1, 12);
+const categories = await fetchCategories();
+
+const DataSet: JobData[] = rows.map((row: any) => ({
+  id: row.id ?? 0,
+  title: typeof row.title === "string" ? row.title : (row.title?.rendered ?? ""),
+  slug: row.slug ?? "",
+  company: row.company ?? row.meta?.company ?? "Levein Group",
+  image_url: row.image_url,
+  date: row.job_expires ?? "",
+  level: row.job_level ?? row.meta?.job_level ?? "",
+  type: row.job_listing_type ?? row.meta?.job_listing_type ?? "",
+  experience: row.job_experience ?? row.meta?.job_experience ?? "",
+}));
+
+const CatLogs: Categories[] = categories.map(cat => ({
+  id: cat.id,
+  name: cat.name,
+  count: cat.count,
+  slug: cat.slug,
+  svg: getCategoryImage(cat.slug)
+}));
+
 const engJobs = [
   { id: 4, title: "Senior .NET Software Engineer", company: "CodeFactory", salary: "1k–3k USD/mo", location: "Remote" },
   { id: 5, title: "Senior Golang Developer", company: "Prime Holdings JSC", salary: "1.5k–3k USD/mo", location: "Remote" },
   { id: 6, title: "Senior AI Engineer", company: "InnovateAI", salary: "2k–4k USD/mo", location: "Remote" }
 ];
-const designJobs = [
-  { id: 7, title: "UI Designer (Figma Expert)", company: "DesignOps LLC", salary: "30–50 USD/hr", location: "Remote" },
-  { id: 8, title: "Senior UX/UI Designer", company: "Lemonia.io", salary: "40–60 USD/hr", location: "Remote" }
-];
-const categories = [
-  { 
-    id: 'it', 
-    name: 'IT (Software, Design)', 
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/><path d="m9 10 2 2 4-4"/></svg>`, 
-    count: 4 
-  },
-  { 
-    id: 'marketing', 
-    name: 'Marketing', 
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>`, 
-    count: 0 
-  },
-  { 
-    id: 'finance', 
-    name: 'Finance', 
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="m12 18 0-2"/><path d="m12 8 0-2"/></svg>`, 
-    count: 5 
-  },
-  { 
-    id: 'hr', 
-    name: 'HR & Customer Support', 
-    svg: `<svg data-v-6433c584="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>`, 
-    count: 3 
-  }
-];
+
+
 ---
 
 <!-- Hero Section -->
@@ -286,7 +275,7 @@ const categories = [
   <div class="max-w-7xl mx-auto px-4 text-center">
     <h2 class="section-title">Popular Categories</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-      {categories.map(cat => (
+      {CatLogs.slice(0, 4).map(cat => (
         <div id={`category-${cat.id}`} class="category-card">
           <div class="category-image-wrapper">
             <Fragment set:html={cat.svg} />
