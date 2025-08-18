@@ -10,6 +10,10 @@ a:hover{
     text-decoration: none;
 }
 
+.desktop-nav{
+    font-family: "Quicksand", sans-serif;
+}
+
 .post-job-button{
     background-color: #e81b39;
     font-family: "Quicksand", sans-serif;

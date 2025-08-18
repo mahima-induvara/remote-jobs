@@ -22,12 +22,17 @@ $shadow: 0 24px 64px rgba(31, 41, 55, 0.04);
       text-align: center;
     }
     .job-title {
+      font-family: $font-secondary;
       font-size: 2.5rem;
       margin-bottom: 1rem;
+      @include mobile{
+        font-size: 20px;
+      }
     }
     .job-meta {
+      font-family: $font-secondary;
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
       align-items: center;
       gap: 1rem;
@@ -37,9 +42,13 @@ $shadow: 0 24px 64px rgba(31, 41, 55, 0.04);
         padding: 0.4rem 0.8rem;
         border-radius: 9999px;
         font-size: 0.9rem;
+        font-size: 16px;
       }
       .meta-item {
         font-size: 0.9rem;
+        span{
+          font-size: 16px;
+        }
       }
     }
   }

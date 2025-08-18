@@ -70,7 +70,7 @@ a {
     color: white;
     border: 2px solid $clr-accent;
     &:hover {
-      background: $clr-accent-dark;
+      background: rgb(212.1035856574, 21.3964143426, 49.3047808765);
       border-color: $clr-accent-dark;
     }
   }
@@ -202,7 +202,7 @@ a {
   .filter-select {
     appearance: none;
     background: #f9fafa;
-    border: 1px solid rgba(31, 41, 55, 0.08);
+    border: 1px solid rgba(31, 41, 55, 0.1);
     border-radius: 8px;
     padding: 10px 12px 10px 38px;
     font-size: 0.9rem;
@@ -243,6 +243,22 @@ a {
 
     input {
       padding-left: 38px;
+    }
+
+    ::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+
+    /* Older browser compatibility (less common now but historically used) */
+    ::-webkit-input-placeholder { /* Chrome, Safari, Opera */
+      color: #999;
+      font-style: italic;
+    }
+
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: #999;
+      font-style: italic;
     }
   }
 

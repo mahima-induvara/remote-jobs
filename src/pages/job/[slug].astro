@@ -68,8 +68,9 @@ const recentJobs = [
         <h1 class="job-title">{post.title}</h1>
         <div class="job-meta">
           <span class="pill">{post.job_listing_type}</span>
-          <span class="meta-item">{post.location}</span>
-          <span class="meta-item">{post.job_expires}</span>
+          <span class="meta-item flex items-center gap-2"><svg aria-hidden="true" width="25px" height="25px" fill="#fff" class="e-font-icon-svg e-fas-map-marked-alt" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42zM20.12 215.95A32.006 32.006 0 0 0 0 245.66v250.32c0 11.32 11.43 19.06 21.94 14.86L160 448V214.92c-8.84-15.98-16.07-31.54-21.25-46.42L20.12 215.95zM288 359.67c-14.07 0-27.38-6.18-36.51-16.96-19.66-23.2-40.57-49.62-59.49-76.72v182l192 64V266c-18.92 27.09-39.82 53.52-59.49 76.72-9.13 10.77-22.44 16.95-36.51 16.95zm266.06-198.51L416 224v288l139.88-55.95A31.996 31.996 0 0 0 576 426.34V176.02c0-11.32-11.43-19.06-21.94-14.86z"></path></svg>
+           <span>{post.location}</span> </span>
+          <span class="meta-item flex items-center gap-2"> <svg aria-hidden="true" width="25px" height="25px" fill="#fff" class="e-font-icon-svg e-fas-stopwatch" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M432 304c0 114.9-93.1 208-208 208S16 418.9 16 304c0-104 76.3-190.2 176-205.5V64h-28c-6.6 0-12-5.4-12-12V12c0-6.6 5.4-12 12-12h120c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-28v34.5c37.5 5.8 71.7 21.6 99.7 44.6l27.5-27.5c4.7-4.7 12.3-4.7 17 0l28.3 28.3c4.7 4.7 4.7 12.3 0 17l-29.4 29.4-.6.6C419.7 223.3 432 262.2 432 304zm-176 36V188.5c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12V340c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12z"></path></svg><span>{post.job_expires}</span></span>
         </div>
       </div>
     </section>
@@ -115,9 +116,9 @@ const recentJobs = [
             <a href="/" class="back-to-job">
               ← Back to Jobs
             </a>
-            <a href="/contact" class="btn-apply">
+            <button data-job-id={post.id} data-job-title={post.title} data-slug={post.slug} class="btn-apply">
               Apply Now →
-            </a>
+            </button>
           </div>
         </section>
         <!-- Recent Jobs -->
@@ -139,7 +140,7 @@ const recentJobs = [
       <aside class="sidebar lg:w-1/3">
         <div class="apply-box">
           <p>Click below to submit your resume and send your application directly to the employer.</p>
-          <button class="btn-apply">Apply Now</button>
+          <button class="btn-apply" data-job-id={post.id} data-slug={post.slug} data-job-title={post.title}>Apply Now</button>
         </div>
         <div class="overview">
           <h4>Job Overview</h4>
@@ -153,5 +154,23 @@ const recentJobs = [
         </div>
       </aside>
     </div>
+    
 </article>
+<script>
+
+  document.body.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-apply')) {
+      e.preventDefault();
+      
+      const jobId = e.target.getAttribute('data-job-id');
+      const jobTitle = e.target.getAttribute('data-job-title');
+      const slug = e.target.getAttribute('data-slug');
+
+      sessionStorage.setItem('jobId', jobId);
+      sessionStorage.setItem('jobTitle', jobTitle);
+      sessionStorage.setItem('tempUrl', `/submit-resume/?apply-for=${slug}`);
+      window.location.href = `/submit-resume/?apply-for=${slug}`;
+    }
+  });
+</script>
 </Layout>

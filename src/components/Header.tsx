@@ -67,7 +67,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8 text-md font-medium">
+          <nav className="hidden md:flex items-center gap-8 text-md font-medium desktop-nav">
             {menuItems.map((m) => (
               <a
                 key={m.href}

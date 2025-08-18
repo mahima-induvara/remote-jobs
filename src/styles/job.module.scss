@@ -63,6 +63,7 @@
       height: 20px;
       fill: #6b7280;
       margin-right: 0.25rem;
+      margin-bottom: 5px;
     }
 
     .icon {
@@ -83,8 +84,15 @@
 .jobMoreInfo{
 
   .jobDate {
+      display: flex;
+      align-items: center;
+      gap: 5px;
       font-size: 0.875rem;
       color: #6b7280;
+
+      svg{
+        margin-bottom: 5px;
+      }
   }
   .jobApplyBtn {
     padding: 0.5rem 1rem;
