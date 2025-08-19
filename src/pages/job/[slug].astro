@@ -116,7 +116,7 @@ const recentJobs = [
             <a href="/" class="back-to-job">
               ← Back to Jobs
             </a>
-            <button data-job-id={post.id} data-job-title={post.title} data-slug={post.slug} class="btn-apply">
+            <button data-job-id={post.id} data-job-title={post.title} data-slug={post.slug} data-tableId={post.airtable_resume_id} class="btn-apply">
               Apply Now →
             </button>
           </div>
@@ -140,7 +140,7 @@ const recentJobs = [
       <aside class="sidebar lg:w-1/3">
         <div class="apply-box">
           <p>Click below to submit your resume and send your application directly to the employer.</p>
-          <button class="btn-apply" data-job-id={post.id} data-slug={post.slug} data-job-title={post.title}>Apply Now</button>
+          <button class="btn-apply" data-job-id={post.id} data-slug={post.slug} data-job-title={post.title} data-tableId={post.airtable_resume_id}>Apply Now</button>
         </div>
         <div class="overview">
           <h4>Job Overview</h4>
@@ -162,12 +162,11 @@ const recentJobs = [
     if (e.target.classList.contains('btn-apply')) {
       e.preventDefault();
       
-      const jobId = e.target.getAttribute('data-job-id');
-      const jobTitle = e.target.getAttribute('data-job-title');
       const slug = e.target.getAttribute('data-slug');
 
-      sessionStorage.setItem('jobId', jobId);
-      sessionStorage.setItem('jobTitle', jobTitle);
+      sessionStorage.setItem('jobId', e.target.getAttribute('data-job-id'));
+      sessionStorage.setItem('jobTitle', e.target.getAttribute('data-job-title'));
+      sessionStorage.setItem('tableId', e.target.getAttribute('data-tableId'));
       sessionStorage.setItem('tempUrl', `/submit-resume/?apply-for=${slug}`);
       window.location.href = `/submit-resume/?apply-for=${slug}`;
     }

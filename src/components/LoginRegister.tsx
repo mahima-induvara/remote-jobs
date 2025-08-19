@@ -1,5 +1,7 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import styles from "@styles/login-register.module.scss";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 interface LoginData {
     username: string;
@@ -11,6 +13,7 @@ interface RegisterData {
   companyName: string;
   website: string;
   password: string;
+  confirmation: string;
 }
 interface Cookie {
     name: string;
@@ -39,21 +42,107 @@ export default function LoginRegister() {
     companyName: "",
     website: "",
     password: "",
+    confirmation: "",
   });
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isLogin) {
-      if (loginData.password === "1234" && loginData.username === "test") {
-        window.location.href = "/post-a-job";
-        sessionStorage.setItem("isUserLogin", "true");
-        sessionStorage.setItem("userName", loginData.username);
-      } else {
-        alert("Login failed!");
+  const registerCompany = async (data: any) => {
+    try{
+      const response = await axios.post("/api/register", JSON.stringify(data), {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      if (response.status === 200) {
+        toast.success("Registration successful!");
+        setRegisterData({
+         name: "",
+         email: "",
+         companyName: "",
+         website: "",
+         password: "",
+         confirmation: "",
+       });
+       setMode("login");
       }
-    } else {
-      console.log("Registering user:", registerData);
+    } catch (error) {
+      toast.error("Registration failed. Please try again.");
     }
+  }
+
+  // const handleLogin = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (isLogin) {
+  //     if (loginData.password === "1234" && loginData.username === "test") {
+  //       window.location.href = "/post-a-job";
+  //       sessionStorage.setItem("isUserLogin", "true");
+  //       sessionStorage.setItem("userName", loginData.username);
+  //     } else {
+  //       alert("Login failed!");
+  //     }
+  //   } else {
+  //     console.log("Registering user:", registerData);
+  //   }
+  // };
+  const transformRegisterData = (data: RegisterData) => {
+    return {
+      username: data.name.toLocaleLowerCase(),
+      email: data.email,
+      first_name: data.name,
+      password: data.password,
+      website: data.website,
+      role: "author"
+    };
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    //setLoading(true);
+
+    if (isLogin) {
+      try {
+        const res = await axios.get(
+          "http://remoteweb.test/wp-json/remoteasia/v2/login",
+          {
+            params: {
+              username_or_email: loginData.username,
+              password: loginData.password,
+            },
+          }
+        );
+
+        if (res.status === 200) {
+          sessionStorage.setItem("userToken", res.data.token);
+          sessionStorage.setItem("userID", res.data.user_id);
+          sessionStorage.setItem("isUserLogin", "true");
+          sessionStorage.setItem("userName", loginData.username);
+          //setLoading(false);
+          window.location.href = "/post-a-job";
+        }
+      } catch (err) {
+        //setLoading(false);
+        if (axios.isAxiosError(err)) {
+          if (err.response) {
+            if (err.response.status == 401) {
+              toast.error("Invalid credentials. Please try again.");
+            } else if (err.response.status == 500) {
+              toast.error("Server error. Please try again later");
+            }
+          } else {
+            toast.error("Network error. Please check your connection.");
+          }
+        } else {
+          toast.error("An unexpected error occurred");
+        }
+      }
+    }
+    else {
+       console.log("Registering user:", registerData);
+       if (registerData.password === registerData.confirmation) {
+         registerCompany(transformRegisterData(registerData));
+       } else {
+         toast.error("Passwords do not match");
+       }
+     }
   };
 
   return (
@@ -140,7 +229,7 @@ export default function LoginRegister() {
                       Sign in
                     </button>
 
-                    <div className="flex items-center gap-4">
+                    {/* <div className="flex items-center gap-4">
                       <span className="text-xs text-gray-500 shrink-0">
                         Or Sign in with
                       </span>
@@ -159,7 +248,7 @@ export default function LoginRegister() {
                       >
                         Facebook
                       </button>
-                    </div>
+                    </div> */}
                   </>
                 )}
 
@@ -253,6 +342,10 @@ export default function LoginRegister() {
                         <input
                           type="password"
                           placeholder="Re-enter password"
+                          value={registerData.confirmation}
+                          onChange={(e) =>
+                            setRegisterData({ ...registerData, confirmation: e.target.value })
+                          }
                           className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 outline-none focus:ring-4 focus:ring-amber-100 focus:border-amber-400"
                         />
                       </label>
@@ -269,7 +362,7 @@ export default function LoginRegister() {
               </form>
 
               {/* Bottom switch */}
-              <div className="mt-6 text-center text-sm text-gray-600">
+              <div className="mt-4 text-center text-sm text-gray-600">
                 {isLogin ? (
                   <>
                     Don't have an account?{" "}
@@ -299,9 +392,22 @@ export default function LoginRegister() {
                 Copyright © RJA 2025 &nbsp; | &nbsp; Privacy Policy
               </p>
             </div>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable={false}
+            pauseOnHover={false}
+            theme="colored"
+            />
           </section>
         </div>
       </main>
     </div>
+    
   );
 }

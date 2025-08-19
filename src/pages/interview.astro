@@ -17,7 +17,7 @@ import "@styles/interview.scss";
         
         <div class="content">
             <h1>Thank You for Your Application!</h1>
-            <p class="subtitle">Your CV has been successfully submitted.&nbsp;<strong></strong> <br>Here's what happens next:</p>
+            <p class="subtitle">Your CV has been successfully submitted.&nbsp;<strong id="resume-id"></strong> <br>Here's what happens next:</p>
             
             <div class="step-container">
                 <!-- <div class="step">
@@ -112,5 +112,12 @@ import "@styles/interview.scss";
             </div>
         </div>
     </section>
-    
+    <script>
+        let resumeID = sessionStorage.getItem("resumeID");
+        console.log(resumeID);
+
+        if (resumeID) {
+            document.getElementById("resume-id").innerText = resumeID;
+        }
+    </script>
 </Layout>

@@ -9,6 +9,7 @@ import {
   User,
   MapPin,
   Mail,
+  VenusAndMars,
   GraduationCap,
   BriefcaseBusiness,
   Medal,
@@ -44,7 +45,9 @@ interface ApplicationFormData {
   name: string;
   email: string;
   ageRange: string;
+  gender: string;
   location: string;
+  candidate_resume: string;
   currentSalary: string;
   expectedSalary: string;
   content: string;
@@ -73,7 +76,9 @@ export default function ApplicationForm() {
     name: "",
     email: "",
     ageRange: "",
+    gender: "",
     location: "",
+    candidate_resume: "",
     currentSalary: "",
     expectedSalary: "",
     content: "",
@@ -87,7 +92,7 @@ export default function ApplicationForm() {
     primaryReason: "",
     howDidYouFind: "",
     referredby: "",
-    employmentStatus: "employed",
+    employmentStatus: "Yes",
   });
   // Dynamic sections
   const [educations, setEducations] = useState<Education[]>([]);
@@ -105,16 +110,21 @@ export default function ApplicationForm() {
   const [questionData, setQuestionData] = useState<questionDataType[]>([]);
 
   const languageOptions: OptionType[] = [
-    { value: "sinhala", label: "Sinhala" },
-    { value: "tamil", label: "Tamil" },
-    { value: "english", label: "English" },
+    { value: "English", label: "English" },
+    { value: "Sinhala", label: "Sinhala" },
+    { value: "Tamil", label: "Tamil" },
   ];
 
   const educationOptions: OptionType[] = [
-    { value: "bachelors", label: "Bachelor's Degree" },
-    { value: "diploma", label: "Diploma / HND / CIMA / ACCA" },
-    { value: "ol", label: "Ordinary Level" },
-    { value: "msc", label: "MSc (Postgraduate)" },
+    { value: "Advanced Level", label: "Advanced Level" },
+    { value: "Pursuing a Degree", label: "Pursuing a Degree" },
+    { value: "Bachelor’s Degree", label: "Bachelor's Degree" },
+    {
+      value: "Diploma / HND / CIMA / ACCA",
+      label: "Diploma / HND / CIMA / ACCA",
+    },
+    { value: "MSc (Postgraduate)", label: "MSc (Postgraduate)" },
+    { value: "MBBS", label: "MBBS" },
   ];
 
   useEffect(() => {
@@ -242,19 +252,44 @@ export default function ApplicationForm() {
     // sessionStorage.setItem("questionsData", JSON.stringify(questionData));
   }, [formData, questionData]);
 
+  const handleUpload = async () => {
+    if (!file) return;
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      setFile(e.target.files[0]);
-      reader.onload = () => {
-        sessionStorage.setItem("uploadedFile", reader.result as string);
-      };
+    const fileData = new FormData();
+    fileData.append("file", file);
+    const username = "induvara";
+    const appPassword = "Kqe4 fED9 b1jr C2Fp ditw tiqX";
+    const token = btoa(`${username}:${appPassword}`);
 
-      reader.readAsDataURL(file);
+    const res = await fetch(
+      "http://remoteweb.test/wp-json/remoteasia/v1/upload-resume",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${token}`,
+        },
+        body: fileData,
+      }
+    );
+
+    const data = await res.json();
+    if (data.success && data.file_url) {
+      //console.log("Final uploaded file URL:", data.file_url);
+      sessionStorage.setItem("resumeUrl", data.file_url);
+      setFormData({ ...formData, candidate_resume: data.file_url });
     }
   };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setFile(file);
+    }
+  };
+
+  useEffect(() => {
+    handleUpload();
+  }, [file]);
 
   // Submit
   const handleSubmit = (e: React.FormEvent) => {
@@ -266,12 +301,12 @@ export default function ApplicationForm() {
       experiences: experiences,
       educations: educations,
     };
-    if (payload){
+    if (payload) {
       window.location.href = "/application-preview";
     }
 
     sessionStorage.setItem("applicationPayload", JSON.stringify(payload));
-    console.log('Submitting application payload:', payload);
+    console.log("Submitting application payload:", payload);
     // TODO: integrate submission logic
   };
 
@@ -294,7 +329,6 @@ export default function ApplicationForm() {
       overflow: "hidden",
     }),
   };
-
 
   return (
     <form
@@ -360,6 +394,25 @@ export default function ApplicationForm() {
             <option>46-50 Years</option>
             <option>Above 50 Years</option>
             {/* … */}
+          </select>
+        </div>
+        <div className={styles.field}>
+          <label htmlFor="gender">
+            <VenusAndMars size={16} className={styles.label_icon} />
+            Gender<span className={styles.req}>*</span>
+          </label>
+          <select
+            id="gender"
+            name="gender"
+            value={formData.gender}
+            required
+            onChange={(e) =>
+              setFormData({ ...formData, gender: e.target.value })
+            }
+          >
+            <option value="">Select a gender...</option>
+            <option>Male</option>
+            <option>Female</option>
           </select>
         </div>
         <div className={styles.field}>
@@ -461,10 +514,14 @@ export default function ApplicationForm() {
             required
           >
             <option value="">Choose an expected salary...</option>
-            <option value="0k-10k">0 - 100,000 LKR</option>
-            <option value="10k-30k">100,000 LKR to 300,000 LKR</option>
-            <option value="30k-50k">300,000 LKR to 500,000 LKR</option>
-            <option value="above-50k">Above 500,000 LKR</option>
+            <option value="0 - 100,000 LKR">0 - 100,000 LKR</option>
+            <option value="100,000 LKR to 300,000 LKR">
+              100,000 LKR to 300,000 LKR
+            </option>
+            <option value="300,000 LKR to 500,000 LKR">
+              300,000 LKR to 500,000 LKR
+            </option>
+            <option value="Above 500,000 LKR">Above 500,000 LKR</option>
           </select>
         </div>
         <div className={styles.field}>
@@ -592,7 +649,7 @@ export default function ApplicationForm() {
               <input
                 type="radio"
                 name="employmentStatus"
-                value="employed"
+                value="Yes"
                 defaultChecked
                 onChange={(e) =>
                   setFormData({ ...formData, employmentStatus: e.target.value })
@@ -606,7 +663,7 @@ export default function ApplicationForm() {
               <input
                 type="radio"
                 name="employmentStatus"
-                value="unemployed"
+                value="No"
                 onChange={(e) =>
                   setFormData({ ...formData, employmentStatus: e.target.value })
                 }

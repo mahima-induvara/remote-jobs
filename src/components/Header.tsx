@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "@assets/Remote-jobs-logo.png";
+import { escapeHTML } from "astro/runtime/server/escape.js";
 const menuItems = [
   { label: "Jobs", href: "/" },
   { label: "About", href: "/about-us" },
@@ -35,6 +36,7 @@ const CloseIcon: React.FC<{ className?: string }> = ({ className }) => (
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
+  const [authentication, setAuthentication] = useState<string | null>(null);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -54,6 +56,12 @@ const Header: React.FC = () => {
       document.body.style.overflow = "";
     }
   }, [open]);
+  useEffect(() => {
+    const authenticated = sessionStorage.getItem("userToken");
+    if (authenticated) {
+      setAuthentication(authenticated);
+    }
+  }, []);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-sm py-2">
@@ -81,7 +89,7 @@ const Header: React.FC = () => {
           </nav>
           <div className="post-a-job hidden md:block">
             <a
-              href="/login"
+              href={authentication ? `/post-a-job` : `/login`}
               className="ml-2 inline-block px-4 py-2 font-semibold text-white transition post-job-button"
             >
                 
@@ -144,7 +152,7 @@ const Header: React.FC = () => {
           </div>
           <div>
             <a
-              href="/login"
+              href={authentication ? `/post-a-job` : `/login`}
               onClick={() => setOpen(false)}
               className="block w-full text-center px-4 py-2 rounded-md bg-red-500 text-white font-semibold hover:bg-red-600 transition"
             >

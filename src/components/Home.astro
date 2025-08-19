@@ -32,9 +32,9 @@ const CatLogs: Categories[] = categories.map(cat => ({
 }));
 
 const engJobs = [
-  { id: 4, title: "Senior .NET Software Engineer", company: "CodeFactory", salary: "1k–3k USD/mo", location: "Remote" },
-  { id: 5, title: "Senior Golang Developer", company: "Prime Holdings JSC", salary: "1.5k–3k USD/mo", location: "Remote" },
-  { id: 6, title: "Senior AI Engineer", company: "InnovateAI", salary: "2k–4k USD/mo", location: "Remote" }
+  { id: 4, title: "Senior .NET Software Engineer", company: "CodeFactory", salary: "1k-3k USD/mo", location: "Remote" },
+  { id: 5, title: "Senior Golang Developer", company: "Prime Holdings JSC", salary: "1.5k-3k USD/mo", location: "Remote" },
+  { id: 6, title: "Senior AI Engineer", company: "InnovateAI", salary: "2k-4k USD/mo", location: "Remote" }
 ];
 
 
@@ -51,7 +51,7 @@ const engJobs = [
   <section class="filter-bar py-8">
     <div class="max-w-7xl mx-auto px-4">
       <div class="relative bg-white rounded-xl shadow-md overflow-hidden filter-wrapper">
-        <form class="flex flex-col lg:flex-row gap-4 items-start p-4">
+        <form class="flex flex-col lg:flex-row gap-4 items-center p-4">
           <!-- keyword + location -->
           <div class="flex-1 flex flex-col sm:flex-row gap-3 w-full">
             <div class="flex-1 min-w-0">
@@ -232,7 +232,7 @@ const engJobs = [
         </div>
       ))}
     </div> -->
-    <Jobs JobData={DataSet} />
+    <Jobs JobData={DataSet} client:only="react"/>
   </div>
 </section>
 
@@ -241,12 +241,12 @@ const engJobs = [
   <div class="max-w-7xl mx-auto px-4">
     <h2 class="section-title">Recent Jobs</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {engJobs.map(job => (
+      {DataSet.slice(1, 4).map(job => (
         <div id={`job-${job.id}`} class="job-card">
           <h3 class="job-title">{job.title}</h3>
           <p class="job-company">{job.company}</p>
-          <p class="job-meta">{job.location} • {job.salary}</p>
-          <button class="btn btn-primary mt-4 apply-now">Apply Now</button>
+          <p class="job-meta">• {job.level} • {job.type}</p>
+          <a href={`/job/${job.slug}`} class="btn btn-primary mt-4 apply-now">Apply Now</a>
         </div>
       ))}
     </div>
