@@ -430,13 +430,31 @@ export default function ApplicationForm() {
             }
           >
             <option value="">Select a location...</option>
-            <option>Colombo</option>
-            <option>Gampaha</option>
-            <option>Kalutara</option>
-            <option>Nuwara Eliya</option>
-            <option>Matale</option>
-            <option>Hambantota</option>
-            <option>Kandy</option>
+            <option value="Colombo">Colombo</option>
+            <option value="Gampaha">Gampaha</option>
+            <option value="Kalutara">Kalutara</option>
+            <option value="Kandy">Kandy</option>
+            <option value="Matale">Matale</option>
+            <option value="Nuwara Eliya">Nuwara Eliya</option>
+            <option value="Galle">Galle</option>
+            <option value="Matara">Matara</option>
+            <option value="Hambantota">Hambantota</option>
+            <option value="Jaffna">Jaffna</option>
+            <option value="Kilinochchi">Kilinochchi</option>
+            <option value="Mannar">Mannar</option>
+            <option value="Vavuniya">Vavuniya</option>
+            <option value="Mullaitivu">Mullaitivu</option>
+            <option value="Batticaloa">Batticaloa</option>
+            <option value="Ampara">Ampara</option>
+            <option value="Trincomalee">Trincomalee</option>
+            <option value="Kurunegala">Kurunegala</option>
+            <option value="Puttalam">Puttalam</option>
+            <option value="Anuradhapura">Anuradhapura</option>
+            <option value="Polonnaruwa">Polonnaruwa</option>
+            <option value="Badulla">Badulla</option>
+            <option value="Moneragala">Moneragala</option>
+            <option value="Ratnapura">Ratnapura</option>
+            <option value="Kegalle">Kegalle</option>
           </select>
         </div>
         <div className={styles.field}>
@@ -473,11 +491,11 @@ export default function ApplicationForm() {
             required
           >
             <option value="">Choose an experience...</option>
-            <option>0-1 Year</option>
-            <option>1-3 Years</option>
-            <option>3-5 Years</option>
-            <option>6-9 Years</option>
-            <option>Over 10 Years</option>
+            <option value="0-1 Year">0-1 Year</option>
+            <option value="1-3 Years">1-3 Years</option>
+            <option value="3-5 Years">3-5 Years</option>
+            <option value="6-9 Years">6-9 Years</option>
+            <option value="Over 10 Years">Over 10 Years</option>
           </select>
         </div>
         <div className={styles.field}>

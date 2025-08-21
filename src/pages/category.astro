@@ -34,7 +34,6 @@ if (queryParam) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     jobs = await response.json();
-    console.log(jobs[0]);
   } catch (error) {
     console.error('Failed to fetch jobs:', error);
     jobs = [];
@@ -69,20 +68,20 @@ if (queryParam) {
             </div>
 
             <div class="mt-4 flex flex-wrap gap-2">
-            <span class="px-3 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full">
-                2-4 years
+            <span class="px-3 py-1 text-xs font-medium bg-[#e81b390d] text-[#e81b39] rounded-full">
+               {j?.job_experience?.[0]}
             </span>
-            <span class="px-3 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full">
-                5-10 years
+            <span class="px-3 py-1 text-xs font-medium bg-[#514e8529] text-[#514e85] rounded-full">
+                {j?.job_level} 
             </span>
             <span class="px-3 py-1 text-xs font-medium bg-green-50 text-green-700 rounded-full">
-                Senior
+                {j?.job_listing_type[0]} 
             </span>
             </div>
 
             <div class="mt-6 flex items-center justify-between text-sm text-gray-500">
             <span>Expires: <span class="font-medium text-gray-700">{j.job_expires}</span></span>
-            <span class="inline-flex items-center text-blue-600 font-medium">
+            <span class="inline-flex items-center text-[#e81b39] font-medium">
                 View →
             </span>
             </div>

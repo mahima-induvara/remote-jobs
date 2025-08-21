@@ -74,9 +74,14 @@ const engJobs = [
             <div id={`job-${job.id}`} class="job-card">
               <h3 class="job-title">{job.title}</h3>
               <p class="job-company">{job.company}</p>
-              <p class="job-meta">
-                • {job.level} • {job.type}
-              </p>
+              <div class="mt-1 flex flex-wrap gap-2">
+              <span class="px-3 py-1 text-xs font-medium bg-[#e81b390d] text-[#e81b39] rounded-full">
+               {job.level}
+              </span>
+              <span class="px-3 py-1 text-xs font-medium bg-[#514e8529] text-[#514e85] rounded-full">
+                {job.type}
+              </span>
+              </div>
               <a
                 href={`/job/${job.slug}`}
                 class="btn btn-primary mt-4 apply-now"

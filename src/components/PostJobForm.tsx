@@ -1,93 +1,215 @@
 import React, { useEffect } from "react";
 import "@styles/postjobs.module.scss";
 import { useState, useRef } from "react";
+
+type FormData = {
+  jobTitle: string;
+  jobLocation: string;
+  jobType: string;
+  jobTypeOptions: string;
+  jobSalary: string;
+  GrossSalary: string;
+  jobLevel: string;
+  jobExperience: string;
+  jobDescription: string;
+  jobTags: string;
+  jobGender: string;
+  closingDate: string;
+  applicationEmail: string;
+  companyName: string;
+  companyTagline: string;
+  featured_media: number;
+  companyLocation: string;
+  companyMobile: string;
+  companyWebsite: string;
+  companyCategory: string;
+  companyTeamSize: string;
+  companyLinkedIn: string;
+  companyTwitter: string;
+  companyDescription: string;
+  jobIndustry: string;
+  jobQualification: string;
+};
+
+type ApiPayload = {
+  title: string;
+  content: string;
+  status: string;
+  featured_media: number;
+  meta: {
+    _job_location: string;
+    _application: string;
+    _company_name: string;
+    _company_website: string;
+    _company_linkedin: string;
+    _company_tagline: string;
+    _company_twitter: string;
+    _job_expires: string;
+    job_salary: string;
+    _featured: string;
+    _filled: string;
+  };
+  "job-types": number[];
+  "job-categories": number[];
+  job_listing_gender: number[];
+  job_listing_salary: number[];
+  job_listing_experience: number[];
+  job_listing_industry: number[];
+  job_listing_qualification: number[];
+  job_listing_career_level: number[];
+};
+
 export default function PostJobForm() {
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const jobTitle = useRef<HTMLInputElement>(null);
-  const jobLocation = useRef<HTMLInputElement>(null);
-  const jobType = useRef<HTMLSelectElement>(null);
-  const jobTypeOptions = useRef<HTMLSelectElement>(null);
-  const jobSalary = useRef<HTMLInputElement>(null);
-  const jobLevel = useRef<HTMLInputElement>(null);
-  const jobExperience = useRef<HTMLInputElement>(null);
-  const jobDescription = useRef<HTMLTextAreaElement>(null);
-  const jobTags = useRef<HTMLInputElement>(null);
-  const jobGender = useRef<HTMLSelectElement>(null);
-  const closingDate = useRef<HTMLInputElement>(null);
-  const applicationEmail = useRef<HTMLInputElement>(null);
-  const companyName = useRef<HTMLInputElement>(null);
-  const companyTagline = useRef<HTMLInputElement>(null);
-  const companyLocation = useRef<HTMLInputElement>(null);
-  const companyMobile = useRef<HTMLInputElement>(null);
-  const companyWebsite = useRef<HTMLInputElement>(null);
-  const companyLogo = useRef<HTMLInputElement>(null);
-  const companyCategory = useRef<HTMLSelectElement>(null);
-  const companyTeamSize = useRef<HTMLSelectElement>(null);
-  const companyLinkedIn = useRef<HTMLInputElement>(null);
-  const companyTwitter = useRef<HTMLInputElement>(null);
-  const jobIndustry = useRef<HTMLInputElement>(null);
-  const jobQualification = useRef<HTMLInputElement>(null);
-  const companyDescription = useRef<HTMLTextAreaElement>(null);
-
-  const [loading, setLoading] = useState(false);
-  const [currentUser, setCurrentUser] = useState<string>('');
+  // const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [currentUser, setCurrentUser] = useState<string>("");
   useEffect(() => {
     const userName = sessionStorage.getItem("userName");
     if (userName) {
       setCurrentUser(userName);
     }
-  }, [])
+  }, []);
   const [formData, setFormData] = useState({
-    jobTitle: '',
-    jobLocation: '',
-    jobType: '',
-    jobTypeOptions: '',
-    jobSalary: '',
-    jobLevel: '',
-    jobExperience: '',
-    jobDescription: '',
-    jobTags: '',
-    jobGender: '',
-    closingDate: '',
-    applicationEmail: '',
-    companyName: '',
-    companyTagline: '',
-    companyLocation: '',
-    companyMobile: '',
-    companyWebsite: '',
-    companyLogo: null,
-    companyCategory: '',
-    companyTeamSize: '',
-    companyLinkedIn: '',
-    companyTwitter: '',
-    companyDescription: '',
-    jobIndustry: '',
-    jobQualification: ''
+    jobTitle: "",
+    jobLocation: "",
+    jobType: "",
+    jobTypeOptions: "",
+    jobSalary: "",
+    GrossSalary: "",
+    jobLevel: "",
+    jobExperience: "",
+    jobDescription: "",
+    jobTags: "",
+    jobGender: "",
+    closingDate: "",
+    applicationEmail: "",
+    companyName: "",
+    companyTagline: "",
+    companyLocation: "",
+    companyMobile: "",
+    companyWebsite: "",
+    featured_media: 0,
+    companyCategory: "",
+    companyTeamSize: "",
+    companyLinkedIn: "",
+    companyTwitter: "",
+    companyDescription: "",
+    jobIndustry: "",
+    jobQualification: "",
   });
 
-//  const handleJobSubmit = () => {
-//     setFormData({
-//       ...formData,
-//       jobTitle: jobTitle.current?.value || "",
-//       jobLocation: jobLocation.current?.value || "",
-//       jobType: jobType.current?.value || "",
-//       jobSalary: jobSalary.current?.value || "",
-//       jobLevel: jobLevel.current?.value || "",
-//       jobExperience: jobExperience.current?.value || "",
-//       jobDescription: jobDescription.current?.value || "",
-//       jobTags: jobTags.current?.value || "",
-//       jobGender: jobGender.current?.value || "",
-//     });
-//   };
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+
+    if (file) {
+      const maxBytes = 2 * 1024 * 1024; // 2MB
+      const allowed = [
+        "image/png",
+        "image/jpeg",
+        "image/webp",
+        "image/gif",
+        "image/svg+xml",
+      ];
+      if (file.size > maxBytes) {
+        alert("Logo must be under 2 MB.");
+        e.target.value = ""; // reset the input
+        return;
+      }
+      if (!allowed.includes(file.type)) {
+        alert("Please upload a valid image file.");
+        e.target.value = "";
+        return;
+      }
+    }
+    setFile(file);
+  };
+
+  function transformFormData(formData: FormData): ApiPayload {
+    return {
+      title: formData.jobTitle,
+      content: `<p>${formData.jobDescription}</p>`,
+      status: "draft",
+      featured_media: formData.featured_media,
+      meta: {
+        _job_location: formData.jobLocation,
+        _application: formData.applicationEmail,
+        _company_name: formData.companyName,
+        _company_website: formData.companyWebsite,
+        _company_linkedin: formData.companyLinkedIn,
+        _company_tagline: formData.companyTagline,
+        _company_twitter: formData.companyTwitter,
+        _job_expires: formData.closingDate,
+        job_salary: formData.GrossSalary,
+        _featured: "0",
+        _filled: "0",
+      },
+      "job-types": formData.jobType ? [parseInt(formData.jobType, 10)] : [],
+      "job-categories": formData.jobTypeOptions
+        ? [parseInt(formData.jobTypeOptions, 10)]
+        : [],
+      job_listing_gender: formData.jobGender
+        ? [parseInt(formData.jobGender, 10)]
+        : [],
+      job_listing_salary: formData.jobSalary
+        ? [parseInt(formData.jobSalary, 10)]
+        : [],
+      job_listing_experience: formData.jobExperience
+        ? [parseInt(formData.jobExperience, 10)]
+        : [],
+      job_listing_industry: formData.jobIndustry
+        ? [parseInt(formData.jobIndustry, 10)]
+        : [],
+      job_listing_qualification: formData.jobQualification
+        ? [parseInt(formData.jobQualification, 10)]
+        : [],
+      job_listing_career_level: formData.jobLevel
+        ? [parseInt(formData.jobLevel, 10)]
+        : [],
+    };
+  }
+
+  const saveJobToWordpress = async (payload: ApiPayload) => {
+    const response = await fetch("/api/jobs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to save job");
+    } else {
+      console.log("Job created successfully:", await response.json());
+    }
+  };
+
+  const handleJobSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const payload = transformFormData(formData);
+
+    console.log(payload);
+    saveJobToWordpress(payload);
+  };
 
   return (
     <section className="max-w-7xl mx-auto px-4 mt-[80px] py-16">
+      <div className="mb-6 p-4 bg-blue-100 rounded">
+        You are currently signed in as <strong>{currentUser}</strong>.
+      </div>
 
-        <div className="mb-6 p-4 bg-blue-100 rounded">
-          You are currently signed in as <strong>{currentUser}</strong>.
-        </div>
-
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={handleJobSubmit}>
         {/* Job Title */}
         <div>
           <label htmlFor="jobTitle" className="block mb-1 font-semibold">
@@ -95,10 +217,12 @@ export default function PostJobForm() {
           </label>
           <input
             type="text"
-            id="jobTitle"
+            name="jobTitle"
+            required
+            placeholder="Enter job title"
             className="w-full border border-gray-300 rounded px-3 py-2"
-            ref={jobTitle}
-            onChange={() => setFormData({ ...formData, jobTitle: jobTitle.current?.value || "" })}
+            value={formData.jobTitle}
+            onChange={handleChange}
           />
         </div>
 
@@ -110,11 +234,11 @@ export default function PostJobForm() {
             </label>
             <input
               type="text"
-              id="location"
               placeholder='e.g. "London"'
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={jobLocation}
-              onChange={() => setFormData({ ...formData, jobLocation: jobLocation.current?.value || "" })}
+              name="jobLocation"
+              value={formData.jobLocation}
+              onChange={handleChange}
             />
             <p className="text-xs text-gray-400 mt-1">
               Leave this blank if the location is not important
@@ -123,19 +247,21 @@ export default function PostJobForm() {
 
           <div>
             <label htmlFor="jobType" className="block mb-1 font-semibold">
-              Job type
+              Job Type
             </label>
             <select
-              id="jobType"
+              name="jobType"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={jobType}
-              onChange={() => setFormData({ ...formData, jobType: jobType.current?.value || "" })}
+              value={formData.jobType}
+              required
+              onChange={handleChange}
             >
               <option value="">Select job type</option>
-              <option value="contract-full">Contract – Full time</option>
-              <option value="part-time">Part time</option>
-              <option value="freelance">Freelance</option>
-              <option value="internship">Internship</option>
+              <option value="2">Contract – Full time</option>
+              <option value="3">Contract – Part time</option>
+              <option value="5">Freelance</option>
+              <option value="6">Internship</option>
+              <option value="4">Permanent – Full time</option>
             </select>
           </div>
 
@@ -143,14 +269,20 @@ export default function PostJobForm() {
             <label htmlFor="jobSalary" className="block mb-1 font-semibold">
               Job Salary <span className="text-gray-400">(optional)</span>
             </label>
-            <input
-              type="text"
-              id="jobSalary"
-              placeholder="Choose a salary..."
+            <select
+              name="jobSalary"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={jobSalary}
-              onChange={() => setFormData({ ...formData, jobSalary: jobSalary.current?.value || "" })}
-            />
+              value={formData.jobSalary}
+              onChange={handleChange}
+            >
+              <option value="">Choose a salary...</option>
+              <option value="191">0 – 100,000 LKR</option>
+              <option value="192">100,000 LKR – 200,000 LKR</option>
+              <option value="702">200,000 LKR – 300,000 LKR</option>
+              <option value="703">300,000 LKR – 400,000 LKR</option>
+              <option value="218">400,000 LKR – 500,000 LKR</option>
+              <option value="219">Above 500,000 LKR</option>
+            </select>
           </div>
         </div>
 
@@ -160,28 +292,36 @@ export default function PostJobForm() {
             <label htmlFor="careerLevel" className="block mb-1 font-semibold">
               Job Career Level <span className="text-gray-400">(optional)</span>
             </label>
-            <input
-              type="text"
-              id="careerLevel"
-              placeholder="Choose a career level..."
+            <select
+              value={formData.jobLevel}
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={jobLevel}
-              onChange={() => setFormData({ ...formData, jobLevel: jobLevel.current?.value || "" })}
-            />
+              name="jobLevel"
+              onChange={handleChange}
+            >
+              <option value="">Select career level</option>
+              <option value="128">Intern</option>
+              <option value="127">Senior</option>
+              <option value="100">Lead</option>
+              <option value="6945">Executive</option>
+            </select>
           </div>
 
           <div>
             <label htmlFor="experience" className="block mb-1 font-semibold">
               Job Experience <span className="text-gray-400">(optional)</span>
             </label>
-            <input
-              type="text"
-              id="experience"
-              placeholder="Choose a job experience..."
+            <select
+              name="jobExperience"
+              value={formData.jobExperience}
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={jobExperience}
-              onChange={() => setFormData({ ...formData, jobExperience: jobExperience.current?.value || "" })}
-            />
+              onChange={handleChange}
+            >
+              <option value="">Select job experience</option>
+              <option value="130">0-2 years</option>
+              <option value="129">2-4 years</option>
+              <option value="58">5-10 years</option>
+              <option value="248">10+ years</option>
+            </select>
           </div>
 
           <div>
@@ -189,14 +329,14 @@ export default function PostJobForm() {
               Job Gender <span className="text-gray-400">(optional)</span>
             </label>
             <select
-              id="jobGender"
+              name="jobGender"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={jobGender}
-              onChange={() => setFormData({ ...formData, jobGender: jobGender.current?.value || "" })}
+              value={formData.jobGender}
+              onChange={handleChange}
             >
               <option value="">Choose a Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="101">Male</option>
+              <option value="75">Female</option>
             </select>
           </div>
         </div>
@@ -204,31 +344,46 @@ export default function PostJobForm() {
         {/* Industry, Qualification */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="industry" className="block mb-1 font-semibold">
+            <label htmlFor="jobIndustry" className="block mb-1 font-semibold">
               Job Industry <span className="text-gray-400">(optional)</span>
             </label>
-            <input
-              type="text"
-              id="industry"
-              placeholder="Choose a job industry..."
+            <select
+              name="jobIndustry"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={jobIndustry}
-              onChange={() => setFormData({ ...formData, jobIndustry: jobIndustry.current?.value || "" })}
-            />
+              value={formData.jobIndustry}
+              onChange={handleChange}
+            >
+              <option value="">Choose a Job Industry</option>
+              <option value="96">Information Technology</option>
+              <option value="137">Marketing</option>
+              <option value="138">Finance</option>
+              <option value="139">HR</option>
+              <option value="562">Projects</option>
+              <option value="561">Sales</option>
+              <option value="560">Administration and Secretarial</option>
+              <option value="563">Customer Service</option>
+              <option value="7736">Medical</option>
+            </select>
           </div>
 
           <div>
             <label htmlFor="qualification" className="block mb-1 font-semibold">
-              Job Qualification <span className="text-gray-400">(optional)</span>
+              Job Qualification{" "}
+              <span className="text-gray-400">(optional)</span>
             </label>
-            <input
-              type="text"
-              id="qualification"
-              placeholder="Choose a job qualification..."
+            <select
+              name="jobQualification"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={jobQualification}
-              onChange={() => setFormData({ ...formData, jobQualification: jobQualification.current?.value || "" })}
-            />
+              value={formData.jobQualification}
+              onChange={handleChange}
+            >
+              <option value="">Choose a Job Qualification</option>
+              <option value="60">Bachelor's Degree</option>
+              <option value="208">Master's Degree</option>
+              <option value="136">Diploma / HND / CIMA / ACCA</option>
+              <option value="7741">MBBS</option>
+              <option value="135">Pursuing a Degree</option>
+            </select>
           </div>
         </div>
 
@@ -239,33 +394,52 @@ export default function PostJobForm() {
           </label>
           <input
             type="text"
-            id="jobTags"
+            name="jobTags"
             placeholder="e.g. PHP, Social Media, Management"
             className="w-full border border-gray-300 rounded px-3 py-2"
-            ref={jobTags}
-            onChange={() => setFormData({ ...formData, jobTags: jobTags.current?.value || "" })}
+            value={formData.jobTags}
+            onChange={handleChange}
           />
           <p className="text-xs text-gray-400 mt-1">
-            Comma separate tags, such as required skills or technologies, for this job.
+            Comma separate tags, such as required skills or technologies, for
+            this job.
           </p>
         </div>
-
-        {/* Expect job type */}
-        <div>
-          <label htmlFor="expectJobType" className="block mb-1 font-semibold">
-            Enter Expect job type
-          </label>
-          <select
-            id="jobTypeOptions"
-            className="w-full border border-gray-300 rounded px-3 py-2"
-            ref={jobTypeOptions}
-            onChange={() => setFormData({ ...formData, jobTypeOptions: jobTypeOptions.current?.value || "" })}
-          >
-              <option value="">Choose a Job Type</option>
-              <option value="full-time">Full-time</option>
-              <option value="part-time">Part-time</option>
-              <option value="contract">Contract</option>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Expect job type */}
+          <div>
+            <label htmlFor="expectJobType" className="block mb-1 font-semibold">
+              Working Type
+            </label>
+            <select
+              name="jobTypeOptions"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              value={formData.jobTypeOptions}
+              onChange={handleChange}
+            >
+              <option value="">Choose a Working Type</option>
+              <option value="85">On-site</option>
+              <option value="87">Remote</option>
+              <option value="131">Hybrid</option>
             </select>
+          </div>
+
+          {/* Closing Date */}
+          <div>
+            <label htmlFor="closingDate" className="block mb-1 font-semibold">
+              Closing date <span className="text-gray-400">(optional)</span>
+            </label>
+            <input
+              type="date"
+              name="closingDate"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              value={formData.closingDate}
+              onChange={handleChange}
+            />
+            <p className="text-xs text-gray-400 mt-1">
+              Deadline for new applicants.
+            </p>
+          </div>
         </div>
 
         {/* Description */}
@@ -274,56 +448,46 @@ export default function PostJobForm() {
             Description
           </label>
           <textarea
-            id="description"
+            name="jobDescription"
             rows={6}
             className="w-full border border-gray-300 rounded px-3 py-2 resize-y"
+            value={formData.jobDescription}
+            onChange={handleChange}
           ></textarea>
-        </div>
-
-        {/* Closing Date */}
-        <div>
-          <label htmlFor="closingDate" className="block mb-1 font-semibold">
-            Closing date <span className="text-gray-400">(optional)</span>
-          </label>
-          <input
-            type="date"
-            id="closingDate"
-            className="w-full border border-gray-300 rounded px-3 py-2"
-            ref={closingDate}
-            onChange={() => setFormData({ ...formData, closingDate: closingDate.current?.value || "" })}
-          />
-          <p className="text-xs text-gray-400 mt-1">Deadline for new applicants.</p>
         </div>
 
         {/* Application Email/URL */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-            <label htmlFor="applicationEmail" className="block mb-1 font-semibold">
-                Application email/URL
+          <div>
+            <label
+              htmlFor="applicationEmail"
+              className="block mb-1 font-semibold"
+            >
+              Application email/URL
             </label>
             <input
-                type="email"
-                id="applicationEmail"
-                className="w-full border border-gray-300 rounded px-3 py-2"
-                ref={applicationEmail}
-                onChange={() => setFormData({ ...formData, applicationEmail: applicationEmail.current?.value || "" })}
+              type="email"
+              name="applicationEmail"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              value={formData.applicationEmail}
+              onChange={handleChange}
             />
-            </div>
+          </div>
 
-            {/* Salary */}
-            <div>
+          {/* Salary */}
+          <div>
             <label htmlFor="salary" className="block mb-1 font-semibold">
-                Salary <span className="text-gray-400">(optional)</span>
+              Gross Salary <span className="text-gray-400">(optional)</span>
             </label>
             <input
-                type="number"
-                id="salary"
-                placeholder="e.g. 20000"
-                className="w-full border border-gray-300 rounded px-3 py-2"
-                ref={jobSalary}
-                onChange={() => setFormData({ ...formData, jobSalary: jobSalary.current?.value || "" })}
+              type="number"
+              name="GrossSalary"
+              placeholder="e.g. 20000"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              value={formData.GrossSalary}
+              onChange={handleChange}
             />
-            </div>
+          </div>
         </div>
 
         {/* Company Info Grid */}
@@ -334,41 +498,47 @@ export default function PostJobForm() {
             </label>
             <input
               type="text"
-              id="companyName"
+              name="companyName"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={companyName}
-              onChange={() => setFormData({ ...formData, companyName: companyName.current?.value || "" })}
+              value={formData.companyName}
+              onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="companyTagline" className="block mb-1 font-semibold">
+            <label
+              htmlFor="companyTagline"
+              className="block mb-1 font-semibold"
+            >
               Company Tagline <span className="text-gray-400">(optional)</span>
             </label>
             <input
               type="text"
-              id="companyTagline"
+              name="companyTagline"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={companyTagline}
-              onChange={() => setFormData({ ...formData, companyTagline: companyTagline.current?.value || "" })}
+              value={formData.companyTagline}
+              onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="companyLocation" className="block mb-1 font-semibold">
+            <label
+              htmlFor="companyLocation"
+              className="block mb-1 font-semibold"
+            >
               Company Location
             </label>
             <input
               type="text"
-              id="companyLocation"
+              name="companyLocation"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={companyLocation}
-              onChange={() => setFormData({ ...formData, companyLocation: companyLocation.current?.value || "" })}
+              value={formData.companyLocation}
+              onChange={handleChange}
             />
           </div>
         </div>
 
         {/* Company Mobile, Website */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
+          {/* <div>
             <label htmlFor="companyMobile" className="block mb-1 font-semibold">
               Company Mobile
             </label>
@@ -379,17 +549,20 @@ export default function PostJobForm() {
               ref={companyMobile}
               onChange={() => setFormData({ ...formData, companyMobile: companyMobile.current?.value || "" })}
             />
-          </div>
+          </div> */}
           <div>
-            <label htmlFor="companyWebsite" className="block mb-1 font-semibold">
+            <label
+              htmlFor="companyWebsite"
+              className="block mb-1 font-semibold"
+            >
               Company Website <span className="text-gray-400">(optional)</span>
             </label>
             <input
               type="url"
-              id="companyWebsite"
+              name="companyWebsite"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={companyWebsite}
-              onChange={() => setFormData({ ...formData, companyWebsite: companyWebsite.current?.value || "" })}
+              value={formData.companyWebsite}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -400,12 +573,12 @@ export default function PostJobForm() {
             Company Logo <span className="text-gray-400">(optional)</span>
           </label>
           <input
+            ref={fileInputRef}
             type="file"
-            id="companyLogo"
+            name="companyLogo"
             className="w-full"
             accept="image/*"
-            ref={companyLogo}
-            //onChange={() => setFormData({ ...formData, companyLogo: companyLogo.current?.files[0] || null })}
+            onChange={handleLogoChange} // no value prop here
           />
           <p className="text-xs text-gray-400 mt-1">Maximum file size: 2 MB.</p>
         </div>
@@ -413,14 +586,17 @@ export default function PostJobForm() {
         {/* Company Category, Team Size, LinkedIn */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label htmlFor="companyCategory" className="block mb-1 font-semibold">
+            <label
+              htmlFor="companyCategory"
+              className="block mb-1 font-semibold"
+            >
               Select Your Company Category
             </label>
             <select
-              id="companyCategory"
+              name="companyCategory"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={companyCategory}
-              onChange={() => setFormData({ ...formData, companyCategory: companyCategory.current?.value || "" })}
+              value={formData.companyCategory}
+              onChange={handleChange}
             >
               <option value="">Choose an option...</option>
               <option value="tech">Tech</option>
@@ -432,15 +608,17 @@ export default function PostJobForm() {
           </div>
 
           <div>
-            <label htmlFor="companyTeamSize" className="block mb-1 font-semibold">
+            <label
+              htmlFor="companyTeamSize"
+              className="block mb-1 font-semibold"
+            >
               Company Team Size
             </label>
             <select
-              id="companyTeamSize"
+              name="companyTeamSize"
               className="w-full border border-gray-300 rounded px-3 py-2"
               value={formData.companyTeamSize}
-              ref={companyTeamSize}
-              onChange={() => setFormData({ ...formData, companyTeamSize: companyTeamSize.current?.value || "" })}
+              onChange={handleChange}
             >
               <option value="">Choose an option...</option>
               <option value="1-10">1-10</option>
@@ -452,15 +630,18 @@ export default function PostJobForm() {
           </div>
 
           <div>
-            <label htmlFor="companyLinkedIn" className="block mb-1 font-semibold">
+            <label
+              htmlFor="companyLinkedIn"
+              className="block mb-1 font-semibold"
+            >
               Company LinkedIn <span className="text-gray-400">(optional)</span>
             </label>
             <input
               type="url"
-              id="companyLinkedIn"
+              name="companyLinkedIn"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              ref={companyLinkedIn}
-              onChange={() => setFormData({ ...formData, companyLinkedIn: companyLinkedIn.current?.value || "" })}
+              value={formData.companyLinkedIn}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -472,41 +653,44 @@ export default function PostJobForm() {
           </label>
           <input
             type="text"
-            id="companyTwitter"
+            name="companyTwitter"
             className="w-full border border-gray-300 rounded px-3 py-2"
-            ref={companyTwitter}
-            onChange={() => setFormData({ ...formData, companyTwitter: companyTwitter.current?.value || "" })}
+            value={formData.companyTwitter}
+            onChange={handleChange}
           />
         </div>
 
         {/* Company Description */}
         <div>
-          <label htmlFor="companyDescription" className="block mb-1 font-semibold">
+          <label
+            htmlFor="companyDescription"
+            className="block mb-1 font-semibold"
+          >
             Company Description
           </label>
           <textarea
-            id="companyDescription"
+            name="companyDescription"
             rows={4}
             className="w-full border border-gray-300 rounded px-3 py-2 resize-y"
-            ref={companyDescription}
-            onChange={() => setFormData({ ...formData, companyDescription: companyDescription.current?.value || "" })}
+            value={formData.companyDescription}
+            onChange={handleChange}
           ></textarea>
         </div>
 
         {/* Buttons */}
         <div className="flex space-x-4">
           <button
-            type="button"
+            type="submit"
             className="px-6 py-2 border border-[#e81b39] text-[#e81b39] rounded hover:bg-[#fce4e4] transition"
           >
             Preview
           </button>
-          <button
+          {/* <button
             type="submit"
             className="px-6 py-2 bg-[#e81b39] text-white rounded hover:bg-[#c72a3b]-600 transition"
           >
             Save Draft
-          </button>
+          </button> */}
         </div>
       </form>
     </section>
