@@ -466,6 +466,7 @@ export default function ApplicationForm() {
             isMulti
             styles={customStyles}
             options={languageOptions}
+            required
             value={languageOptions.filter((o) =>
               formData.languages.includes(o.value)
             )}
@@ -505,6 +506,7 @@ export default function ApplicationForm() {
           </label>
           <Select<OptionType, true>
             isMulti
+            required
             styles={customStyles}
             options={educationOptions}
             value={educationOptions.filter((o) =>
@@ -593,7 +595,7 @@ export default function ApplicationForm() {
           <label>Skills (optional)</label>
           <input
             type="text"
-            value={formData.skills}
+            value={formData.skills}     
             onChange={(e) =>
               setFormData({ ...formData, skills: e.target.value })
             }

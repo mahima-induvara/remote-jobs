@@ -1,7 +1,7 @@
 ---
 import "@styles/how-it-works.scss";
 import HeroSection from '@components/HeroSection.astro';
-
+import styles from "@styles/info-cards.module.scss";
 const steps = [
   {
     number: 1,
@@ -18,7 +18,7 @@ const steps = [
   {
     number: 2,
     imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-2.jpg',
-    title: "Create Your Profile",
+    title: "Find a Job You Like",
     description: [
        "When you find a job that interests you, click on the listing to view full details.",
       "Review the job description, requirements, and company information carefully.",
@@ -29,25 +29,65 @@ const steps = [
   {
     number: 3,
     imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-3.jpg',
-    title: "Take an Interview",
+    title: "Complete Your Resume",
     description:[
-      "At this point, you'll be prompted to create an account if you haven't already.",
-      "Fill in your basic information, including your name and email address.",
-      "Verify your email address to activate your account."
+      "After clicking apply,  you can proceed with your application.",
+      "Upload your resume and add details about your skills, experience, and job preferences.",
+      "The more complete your profile, the better we can match you with suitable opportunities."
     ],
     imagePosition: "left",
   },
   {
     number: 4,
-    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-4.jpg',
-    title: "Get Found",
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-5.jpg',
+    title: "Apply for Jobs",
     description: [
-      "After creating your account, you'll be guided to complete your profile.",
-      "Upload your resume and add details about your skills, experience, and job preferences.",
-      "The more complete your profile, the better we can match you with suitable opportunities."
+      "Once your resume is complete, you can proceed with your application",
+      "Follow the application instructions provided by the employer.",
+      "Some applications may be completed directly on our platform, while others may redirect you to the company's website."
     ],
     imagePosition: "right",
   },
+  {
+    number: 5,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-6.jpg',
+    title: "Track Your Applications",
+    description: [
+      "Visit your \"My Application Status\" link with your id to see the status of all your job applications.",
+      "Stay organized and never miss an opportunity!"
+    ],
+    imagePosition: "left",
+  },
+    {
+    number: 6,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-9.jpg',
+    title: "Prepare for Interviews",
+    description: [
+      "If an employer is interested, they'll contact you through our platform or directly via email.",
+      "Use our interview preparation resources to help you succeed in your interviews."
+    ],
+    imagePosition: "right",
+  },
+   {
+    number: 7,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-7.png',
+    title: "Receive Job Offers",
+    description: [
+      "Congratulations! If you're selected for a position, you'll receive a job offer.",
+      "Review the offer carefully and use our resources if you need help with negotiations."
+    ],
+    imagePosition: "left",
+  },
+  {
+    number: 8,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-8.jpg',
+    title: "Ongoing Support",
+    description: [
+      "Even after you've landed a job, you can continue to use our resources for remote work tips and career development",
+      "Keep your profile updated for future opportunities"
+    ],
+    imagePosition: "right",
+  }
 ];
 import Layout from '@layouts/Layout.astro';
 ---
@@ -102,6 +142,75 @@ import Layout from '@layouts/Layout.astro';
     </div>
   </div>
 </section>
+
+<div class="max-w-7xl mx-auto px-4 pb-16 grid grid-cols-1 gap-6 sm:grid-cols-2">
+  <!-- Card 1 -->
+  <section
+    class={`${styles.infoCard} group rounded-xl border border-black/10 bg-white/90 p-5 shadow-sm transition-all hover:shadow-md`}
+    role="region"
+    aria-label="Lightning-fast Setup"
+  >
+    <div class="flex items-start gap-4">
+      <div
+        class={`${styles.iconWrap} grid h-12 w-12 place-items-center rounded-lg ring-1 ring-black/10`}
+        aria-hidden="true"
+      >
+        <!-- Spark icon -->
+        <svg
+          class={styles.icon}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+        </svg>
+      </div>
+
+      <div>
+        <h3 class="text-base font-semibold leading-tight">Community Forum</h3>
+        <p class="mt-1 text-sm leading-relaxed">
+          Connect with other job seekers and remote workers to share experiences and advice.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card 2 -->
+  <section
+    class={`${styles.infoCard} group rounded-xl border border-black/10 bg-white/90 p-5 shadow-sm transition-all hover:shadow-md`}
+    role="region"
+    aria-label="Built-in Security"
+  >
+    <div class="flex items-start gap-4">
+      <div
+        class={`${styles.iconWrap} grid h-12 w-12 place-items-center rounded-lg ring-1 ring-black/10`}
+        aria-hidden="true"
+      >
+        <!-- Shield-check icon -->
+        <svg
+          class={styles.icon}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path d="M12 3l7 3v5c0 5.25-3.5 9.75-7 10-3.5-.25-7-4.75-7-10V6l7-3z" />
+          <path d="M9.5 12.5l2 2 4-4" />
+        </svg>
+      </div>
+
+      <div>
+        <h3 class="text-base font-semibold leading-tight">Resource Center</h3>
+        <p class="mt-1 text-sm leading-relaxed">
+          Access our library of articles, webinars, and tools to enhance your skills and remote work readiness.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
 
   </Layout>
 

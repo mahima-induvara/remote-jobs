@@ -257,11 +257,11 @@ export default function PostJobForm() {
               onChange={handleChange}
             >
               <option value="">Select job type</option>
-              <option value="2">Contract – Full time</option>
-              <option value="3">Contract – Part time</option>
+              <option value="2">Contract - Full time</option>
+              <option value="3">Contract - Part time</option>
               <option value="5">Freelance</option>
               <option value="6">Internship</option>
-              <option value="4">Permanent – Full time</option>
+              <option value="4">Permanent - Full time</option>
             </select>
           </div>
 
@@ -276,11 +276,11 @@ export default function PostJobForm() {
               onChange={handleChange}
             >
               <option value="">Choose a salary...</option>
-              <option value="191">0 – 100,000 LKR</option>
-              <option value="192">100,000 LKR – 200,000 LKR</option>
-              <option value="702">200,000 LKR – 300,000 LKR</option>
-              <option value="703">300,000 LKR – 400,000 LKR</option>
-              <option value="218">400,000 LKR – 500,000 LKR</option>
+              <option value="191">0 - 100,000 LKR</option>
+              <option value="192">100,000 LKR - 200,000 LKR</option>
+              <option value="702">200,000 LKR - 300,000 LKR</option>
+              <option value="703">300,000 LKR - 400,000 LKR</option>
+              <option value="218">400,000 LKR - 500,000 LKR</option>
               <option value="219">Above 500,000 LKR</option>
             </select>
           </div>

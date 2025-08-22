@@ -24,7 +24,7 @@ const faqsGeneral  = [
   {
     question: "What means “Print special chars as HTML entities”?",
     answer:
-      "Designer at work who don’t have any content for their product yet have the possibility to insert a dummy text into their design to judge on the arrangement of text on their site, on readability or on fonts and sizes. A dummy text is also helpful to present a design without content to a client to show how the text is going to look like without irritating the client by real texts.",
+      "Designer at work who don't have any content for their product yet have the possibility to insert a dummy text into their design to judge on the arrangement of text on their site, on readability or on fonts and sizes. A dummy text is also helpful to present a design without content to a client to show how the text is going to look like without irritating the client by real texts.",
   },
 ];
 
@@ -54,7 +54,80 @@ const faqEligibility = [
         answer:
         "A: Most of our job listings require fluency in English. Some positions might require knowledge of other European languages, but this will be clearly stated in the job description.",
     }
-]
+];
+
+const faqProcess = [
+    {
+        question: "How do I start my job search on RemoteJobsInAsia.com?",
+        answer:
+        "A: Simply browse our job listings without signing up. When you find a job you'd like to apply for, you'll be prompted to create an account and complete your profile.",
+    },
+    {
+        question: "Can I set up job alerts?",
+        answer:
+        "A: Yes, once you've created an account, you can set up custom job alerts based on your preferences and skills.",
+    },
+    {
+        question: "How often are new jobs posted?",
+        answer:
+        "A: We update our job listings daily. The frequency of new postings depends on our partner companies' hiring needs.",
+    }
+];
+
+const faqApplication = [
+    {
+        question: "How do I apply for a job through RemoteJobsInAsia.com?",
+        answer:
+        "A: Once you've found a job you're interested in, click the “Apply” button on the job listing. You'll be guided through the application process, which typically involves submitting your resume and answering any specific questions the employer has set.",
+    },
+    {
+        question: "Can I apply for multiple jobs?",
+        answer:
+        "A: Yes, you can apply for as many jobs as you're interested in and qualified for.",
+    },
+    {
+        question: "How can I track my applications?",
+        answer:
+        "A: You can track all your applications through your user dashboard once you've created an account.",
+    }
+];
+
+const faqRemote  = [
+    {
+        question: "Are these jobs truly remote, or will I need to relocate in the future?",
+        answer:
+        "A: The jobs on our platform are designed to be fully remote from Sri Lanka. However, some companies might require occasional travel for team meetings or events. Any such requirements will be clearly stated in the job description.",
+    },
+    {
+        question: "How are salary and benefits handled for remote workers in Sri Lanka?",
+        answer:
+        "A: Salary and benefits vary by employer. Most companies offer competitive packages based on Sri Lankan market rates while considering the cost of living difference. Specific details will be discussed during the interview process.",
+    },
+    {
+        question: "Will I be an employee or a contractor?",
+        answer:
+        "A: This depends on the employer and the specific role. Some companies hire remote workers as full-time employees, while others may offer contractor positions. This information is typically included in the job descriptio",
+    }
+];
+
+const faqSupport  = [
+    {
+        question: "Does RemoteJobsInAsia.com offer any support for interview preparation?",
+        answer:
+        "A: Yes, we provide various resources including interview guides, mock interview sessions, and tips on navigating cultural differences when interviewing with European companies.",
+    },
+    {
+        question: "What if I face issues with an employer I connected with through your platform?",
+        answer:
+        "A: While we carefully vet our partner companies, if you face any issues, please contact our support team. We're here to mediate and ensure a positive experience for both parties.",
+    },
+    {
+        question: "Do you offer any skill development resources?",
+        answer:
+        "A: Yes, we provide webinars, discounted courses, and regular updates on in-demand skills in the European tech market to help you stay competitive. If you have any questions not addressed here, please don't hesitate to contact our support team. We're here to help you succeed in your remote job search from Sri Lanka!",
+    }
+];
+
 
 const AllFaqs = [
   {
@@ -62,9 +135,25 @@ const AllFaqs = [
     faqs: faqsGeneral,
   },
   {
-    title: "Eligibility Criteria",
+    title: "Eligibility and Requirements",
     faqs: faqEligibility,
   },
+  {
+    title: "Job Search Process",
+    faqs: faqProcess,
+  },
+  {
+    title: "Application Process",
+    faqs: faqApplication,
+  },
+  {
+    title: "Remote Work and Employment",
+    faqs: faqRemote,
+  },
+  {
+    title: "Support and Resources",
+    faqs: faqSupport,
+  }
 ];
 ---
 <Layout> 
@@ -92,7 +181,7 @@ const AllFaqs = [
             >
                 <span class="q-text">{f.question}</span>
                 <span class="icon" aria-hidden="true">
-                <!-- plus -->
+              
                 <svg
                     class="plus"
                     width="16"
@@ -109,7 +198,7 @@ const AllFaqs = [
                     stroke-linejoin="round"
                     />
                 </svg>
-                <!-- minus -->
+          
                 <svg
                     class="minus"
                     width="16"

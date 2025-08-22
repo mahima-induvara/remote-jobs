@@ -326,6 +326,7 @@ export default function LoginRegister() {
                         </span>
                         <input
                           type="password"
+                          required
                           placeholder="Create a password"
                           value={registerData.password}
                           onChange={(e) =>
@@ -341,6 +342,7 @@ export default function LoginRegister() {
                         </span>
                         <input
                           type="password"
+                          required
                           placeholder="Re-enter password"
                           value={registerData.confirmation}
                           onChange={(e) =>

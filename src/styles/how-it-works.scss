@@ -91,6 +91,10 @@ $transition: all .3s ease;
           margin: 0 0 8px;
           font-size: 1.5rem;
           font-weight: 600;
+          @include mobile{
+            font-size: 1.25rem;
+            margin-top: 10px;
+          }
         }
 
         .step-desc {
@@ -140,5 +144,12 @@ $transition: all .3s ease;
   .card{
     right: unset;
     left: 60px;
+  }
+}
+
+@include mobile{
+  .how-it-works .step .content .card{
+    right: unset;
+    left: unset;
   }
 }

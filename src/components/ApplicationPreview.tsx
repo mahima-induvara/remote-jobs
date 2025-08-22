@@ -156,6 +156,31 @@ export default function ApplicationPreview() {
       return result.id || null;
   };
 
+  const mailData = (name: string, id: string) => {
+    return {
+      applicant_name: name,
+      job_title: sessionStorage.getItem("jobTitle") || "N/A",
+      company_name: "Levein",
+      dashboard_url: `"http://remoteweb.test/my-application?auth?=${id}"`,
+      support_email: "support@remotejobsinasia.com",
+      facebook_url: "https://www.facebook.com/lifeatlevein",
+      linkedin_url: "https://www.linkedin.com/company/levein-group/"
+    };
+  };
+
+  const automateMail = async (data: any) => {
+      const response = await fetch("/api/mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+
+      await response.json();
+      if (response.ok) {
+        console.log("Email automation triggered successfully");
+      }
+  };
+
   const submitApplication = async () => {
     if (!applicationData) {
       toast.error("No application data found.");
@@ -204,7 +229,7 @@ export default function ApplicationPreview() {
       if (!airtableResultId) {
         throw new Error("Failed to save to Airtable");
       }
-
+      automateMail(mailData(applicationData?.name, airtableResultId));
       toast.success("Application submitted successfully!");
       sessionStorage.setItem("resumeID", `#${wpId}`);
       sessionStorage.removeItem("applicationForm");
