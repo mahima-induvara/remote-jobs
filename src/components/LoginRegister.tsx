@@ -1,8 +1,8 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "@styles/login-register.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-
+import Preloader from "@components/Preloader"
 interface LoginData {
     username: string;
     password: string;
@@ -23,6 +23,7 @@ interface Cookie {
 export default function LoginRegister() {
   const [mode, setMode] = useState("login");
   const isLogin = mode === "login";
+  const [loading, setLoading] = useState(false);
     // const setCookie = (cookie: Cookie) => {
     // const { name, value, days } = cookie;
     // const expirationDate = new Date();
@@ -46,6 +47,7 @@ export default function LoginRegister() {
   });
 
   const registerCompany = async (data: any) => {
+    setLoading(true);
     try{
       const response = await axios.post("/api/register", JSON.stringify(data), {
         headers: {
@@ -53,6 +55,7 @@ export default function LoginRegister() {
         }
       });
       if (response.status === 200) {
+        setLoading(false);
         toast.success("Registration successful!");
         setRegisterData({
          name: "",
@@ -65,6 +68,7 @@ export default function LoginRegister() {
        setMode("login");
       }
     } catch (error) {
+      setLoading(false);
       toast.error("Registration failed. Please try again.");
     }
   }
@@ -96,7 +100,7 @@ export default function LoginRegister() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //setLoading(true);
+    setLoading(true);
 
     if (isLogin) {
       try {
@@ -111,6 +115,7 @@ export default function LoginRegister() {
         );
 
         if (res.status === 200) {
+          setLoading(false);
           sessionStorage.setItem("userToken", res.data.token);
           sessionStorage.setItem("userID", res.data.user_id);
           sessionStorage.setItem("isUserLogin", "true");
@@ -119,7 +124,7 @@ export default function LoginRegister() {
           window.location.href = "/post-a-job";
         }
       } catch (err) {
-        //setLoading(false);
+        setLoading(false);
         if (axios.isAxiosError(err)) {
           if (err.response) {
             if (err.response.status == 401) {
@@ -147,7 +152,7 @@ export default function LoginRegister() {
 
   return (
     <div className={` mt-[80px] py-16 ${styles.bgPlayful}`}>
-
+      {loading && <Preloader />}
       {/* Centered Card */}
       <main className="max-w-3xl mx-auto px-4">
         <div className="relative">
