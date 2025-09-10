@@ -1,12 +1,12 @@
 // contact.scss
 
-@use '@styles/variables/typography' as *;
-@use '@styles/variables/colors' as *;
-@use '@styles/mixins/mixins' as *;
-@use '@styles/mixins/support' as *;
+@use "@styles/variables/typography" as *;
+@use "@styles/variables/colors" as *;
+@use "@styles/mixins/mixins" as *;
+@use "@styles/mixins/support" as *;
 $radius: 10px;
-$shadow: 0 24px 64px rgba(31,41,55,0.06);
-$transition: all .3s ease;
+$shadow: 0 24px 64px rgba(31, 41, 55, 0.06);
+$transition: all 0.3s ease;
 
 .contact-hero {
   background: linear-gradient(135deg, #7c3aed 0%, #ec4899 70%);
@@ -24,19 +24,21 @@ $transition: all .3s ease;
     gap: 6px;
     font-size: 0.9rem;
     a.crumb {
-      color: rgba(255,255,255,0.85);
+      color: rgba(255, 255, 255, 0.85);
       text-decoration: none;
-      &:hover { text-decoration: underline; }
+      &:hover {
+        text-decoration: underline;
+      }
     }
     .sep {
-      color: rgba(255,255,255,0.85);
+      color: rgba(255, 255, 255, 0.85);
     }
     .active {
       color: #fff;
       font-weight: 600;
       position: relative;
       &::after {
-        content: '';
+        content: "";
         display: block;
         width: 40px;
         height: 2px;
@@ -93,15 +95,21 @@ $transition: all .3s ease;
       line-height: 1.6;
       color: $clr-text;
       margin-bottom: 1rem;
-      &:last-of-type { margin-bottom: 0; }
+      &:last-of-type {
+        margin-bottom: 0;
+      }
     }
     .call-to-action {
       font-size: 0.95rem;
-      strong { color: $clr-text; }
+      strong {
+        color: $clr-text;
+      }
       a {
         color: $clr-accent;
         text-decoration: none;
-        &:hover { text-decoration: underline; }
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -110,9 +118,13 @@ $transition: all .3s ease;
 @media (max-width: 768px) {
   .contact-hero {
     padding: 1.5rem 0 1rem;
-    .page-title { font-size: 2rem; }
+    .page-title {
+      font-size: 2rem;
+    }
   }
   .contact-info {
-    .info-card { padding: 1.5rem; }
+    .info-card {
+      padding: 1.5rem;
+    }
   }
 }

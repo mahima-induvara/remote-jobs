@@ -10,12 +10,13 @@ interface Socials {
 export interface Props {
   name: string;
   applyDate: string | Date;
+  jobTitle: string;
   status: string;
   candidateId: string;
   socials?: Socials;
 }
 
-const { name, applyDate, status, candidateId, socials = {} } = Astro.props as Props;
+const { name, applyDate, jobTitle, status, candidateId, socials = {} } = Astro.props as Props;
 
 const dateObj = new Date(applyDate);
 const formattedDate = isNaN(dateObj.valueOf())
@@ -23,12 +24,12 @@ const formattedDate = isNaN(dateObj.valueOf())
   : dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
 
 // normalize status -> css modifier
-const normalize = (s: string) => s.toLowerCase().replace(/\s+/g, '-');
+const normalize = (s: string) => s.toLowerCase().replace(/\s+/g, '_');
 const map: Record<string, string> = {
   applied: 'applied',
   interviewing: 'interviewing',
-  offer: 'pending-review',
-  hired: 'shortlisted',
+  pending_review: 'pending_review',
+  shortlisted: 'shortlisted',
   rejected: 'rejected',
 };
 const statusVariant = map[normalize(status)] ?? 'default';
@@ -87,8 +88,8 @@ const links = {
       </div>
 
       <div class="cs-block rounded-lg p-4">
-        <dt class="cs-muted text-xs uppercase tracking-wide">Apply Date</dt>
-        <dd class="mt-1 cs-muted">{formattedDate}</dd>
+        <dt class="cs-muted text-xs uppercase tracking-wide">Apply For</dt>
+        <dd class="mt-1 cs-white">{jobTitle}</dd>
       </div>
     </dl>
   </div>

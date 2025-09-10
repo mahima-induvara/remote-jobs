@@ -1,7 +1,7 @@
 // Design tokens
-@use '@styles/variables/typography' as *;
-@use '@styles/variables/colors' as *;
-@use '@styles/mixins/mixins' as *;
+@use "@styles/variables/typography" as *;
+@use "@styles/variables/colors" as *;
+@use "@styles/mixins/mixins" as *;
 
 $clr-accent-dark: $clr-accent;
 $radius-md: 12px;
@@ -19,7 +19,7 @@ body {
 
 a {
   text-decoration: none;
-  transition: color .2s;
+  transition: color 0.2s;
   &:hover {
     color: $clr-accent-dark;
     text-decoration: none;
@@ -34,7 +34,7 @@ a {
 // Hero
 .hero {
   background: linear-gradient(135deg, #0f101c 0%, #1f2042 70%);
-      background-image: linear-gradient(45deg, #e81b39 0%, #10195D 71%);
+  background-image: linear-gradient(45deg, #e81b39 0%, #10195d 71%);
   position: relative;
   overflow: hidden;
 
@@ -80,7 +80,7 @@ a {
     color: white;
     border: 2px solid white;
     &:hover {
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
     }
   }
 }
@@ -107,7 +107,7 @@ a {
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 20px 48px rgba(31,41,55,0.08);
+    box-shadow: 0 20px 48px rgba(31, 41, 55, 0.08);
   }
 
   .job-title {
@@ -132,7 +132,7 @@ a {
     margin-top: 15px;
     align-self: flex-start;
   }
-  .apply-now{
+  .apply-now {
     padding: 0.5rem 1rem;
     border: 1px solid #e81b39;
     background: transparent;
@@ -170,7 +170,7 @@ a {
     color: $clr-muted;
     margin: 0;
   }
-  .category-image-wrapper{
+  .category-image-wrapper {
     width: 48px;
     height: 48px;
     margin-bottom: 8px;
@@ -185,7 +185,6 @@ a {
     }
   }
 }
-
 
 /* Filter bar & drawer */
 .filter-bar {
@@ -208,17 +207,17 @@ a {
     font-size: 0.9rem;
     width: 100%;
     color: $clr-text;
-    transition: all .2s;
+    transition: all 0.2s;
     &:focus {
       outline: 2px solid $clr-accent;
       background: #fff;
     }
   }
-  .clear_button{
+  .clear_button {
     border-radius: 8px;
     font-weight: 600;
     transition: background-color 0.2s, color 0.2s;
-    &:hover{
+    &:hover {
       background-color: #e81b3a1f;
       color: #ffffff;
     }
@@ -251,12 +250,14 @@ a {
     }
 
     /* Older browser compatibility (less common now but historically used) */
-    ::-webkit-input-placeholder { /* Chrome, Safari, Opera */
+    ::-webkit-input-placeholder {
+      /* Chrome, Safari, Opera */
       color: #999;
       font-style: italic;
     }
 
-    ::-moz-placeholder { /* Firefox 19+ */
+    ::-moz-placeholder {
+      /* Firefox 19+ */
       color: #999;
       font-style: italic;
     }
@@ -269,7 +270,7 @@ a {
     letter-spacing: 0.5px;
     margin-bottom: 4px;
     display: block;
-    color: rgba($clr-text, .8);
+    color: rgba($clr-text, 0.8);
   }
 
   .btn-secondary {
@@ -300,31 +301,30 @@ a {
     }
   }
 }
-.button-plain{
-    background-color: #00000000;
-    font-family: $font-primary;
-    font-weight: 500;
-    line-height: 18px;
-    fill: #e81b39;
-    color: #e81b39;
-    border-style: solid;
-    border-width: 2px 2px 2px 2px;
-    border-color: #e81b39;
-    border-radius: 8px 8px 8px 8px;
-    padding: 14px 30px 14px 30px;
-    cursor: pointer;
-    text-align: center;
-    &:hover{
-          background-color: rgba(232, 27, 57, 0.95);
-        color: rgb(254, 244, 245);
-    }
-
+.button-plain {
+  background-color: #00000000;
+  font-family: $font-primary;
+  font-weight: 500;
+  line-height: 18px;
+  fill: #e81b39;
+  color: #e81b39;
+  border-style: solid;
+  border-width: 2px 2px 2px 2px;
+  border-color: #e81b39;
+  border-radius: 8px 8px 8px 8px;
+  padding: 14px 30px 14px 30px;
+  cursor: pointer;
+  text-align: center;
+  &:hover {
+    background-color: rgba(232, 27, 57, 0.95);
+    color: rgb(254, 244, 245);
   }
+}
 /* Mobile drawer */
 .mobile-drawer {
   .drawer-panel {
     border-radius: 0 12px 12px 0;
-    box-shadow: 0 32px 80px rgba(31,41,55,0.15);
+    box-shadow: 0 32px 80px rgba(31, 41, 55, 0.15);
     position: relative;
 
     select,
@@ -349,46 +349,44 @@ a {
 }
 
 // How it works
-#how-it-works{
+#how-it-works {
+  .hiw-step {
+    background: $clr-card;
+    border-radius: $radius-md;
+    padding: 1.5rem;
+    box-shadow: $shadow;
+    position: relative;
+    transition: $transition;
 
-.hiw-step {
-  background: $clr-card;
-  border-radius: $radius-md;
-  padding: 1.5rem;
-  box-shadow: $shadow;
-  position: relative;
-  transition: $transition;
+    &:hover {
+      transform: translateY(-1px);
+    }
 
-  &:hover {
-    transform: translateY(-1px);
+    .hiw-icon {
+      background: $clr-accent;
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 1rem;
+    }
+
+    h3 {
+      margin: 0 0 6px;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: $clr-muted;
+    }
   }
-
-  .hiw-icon {
-    background: $clr-accent;
-    color: #fff;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 12px;
-    font-size: 1rem;
-  }
-
-  h3 {
-    margin: 0 0 6px;
-    font-size: 1.125rem;
-    font-weight: 600;
-  }
-  p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: $clr-muted;
-  }
-
-}
 }
 
 // Footer

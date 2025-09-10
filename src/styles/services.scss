@@ -1,11 +1,11 @@
-@use '@styles/variables/typography' as *;
-@use '@styles/variables/colors' as *;
-@use '@styles/mixins/mixins' as *;
-@use '@styles/mixins/support' as *;
+@use "@styles/variables/typography" as *;
+@use "@styles/variables/colors" as *;
+@use "@styles/mixins/mixins" as *;
+@use "@styles/mixins/support" as *;
 
 $radius: 12px;
 $shadow: 0 32px 80px rgba(31, 41, 55, 0.06);
-$transition: all .3s ease;
+$transition: all 0.3s ease;
 
 body {
   background: $clr-bg;
@@ -107,7 +107,7 @@ body {
       overflow: hidden;
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 48px 120px rgba(31,41,55,0.12);
+        box-shadow: 0 48px 120px rgba(31, 41, 55, 0.12);
       }
       .icon {
         flex-shrink: 0;
@@ -125,11 +125,11 @@ body {
           font-weight: 600;
         }
         .card-desc {
-            margin: 0;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 24.5px;
-            color: #888888;
+          margin: 0;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 24.5px;
+          color: #888888;
         }
       }
     }

@@ -1,11 +1,11 @@
-@use '@styles/variables/typography' as *;
-@use '@styles/variables/colors' as *;
-@use '@styles/mixins/mixins' as *;
-@use '@styles/mixins/support' as *;
+@use "@styles/variables/typography" as *;
+@use "@styles/variables/colors" as *;
+@use "@styles/mixins/mixins" as *;
+@use "@styles/mixins/support" as *;
 
 $radius: 14px;
 $shadow: 0 32px 80px rgba(31, 41, 55, 0.08);
-$transition: all .3s ease;
+$transition: all 0.3s ease;
 
 .how-it-works {
   font-family: $font-primary;
@@ -31,13 +31,17 @@ $transition: all .3s ease;
         border-radius: $radius;
         overflow: hidden;
         height: 350px;
-        
+
         position: relative;
         &::after {
           content: "";
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.08), transparent 60%);
+          background: radial-gradient(
+            circle at 30% 40%,
+            rgba(255, 255, 255, 0.08),
+            transparent 60%
+          );
           mix-blend-mode: overlay;
         }
         .image-gradient {
@@ -47,7 +51,7 @@ $transition: all .3s ease;
           opacity: 0.8;
           width: 100%;
           height: 100%;
-          background: linear-gradient(135deg, #524E83 0%, #903A6E 60%);
+          background: linear-gradient(135deg, #524e83 0%, #903a6e 60%);
           // placeholder; replace with <img> if desired
         }
       }
@@ -91,7 +95,7 @@ $transition: all .3s ease;
           margin: 0 0 8px;
           font-size: 1.5rem;
           font-weight: 600;
-          @include mobile{
+          @include mobile {
             font-size: 1.25rem;
             margin-top: 10px;
           }
@@ -105,8 +109,8 @@ $transition: all .3s ease;
           gap: 3px;
           color: #54595f;
           line-height: 1.4;
-          svg{
-            flex-shrink: 0; 
+          svg {
+            flex-shrink: 0;
             width: 16px;
             height: 16px;
             margin-right: 8px;
@@ -138,17 +142,17 @@ $transition: all .3s ease;
   }
 }
 
-.card-reverse{
+.card-reverse {
   flex-direction: row-reverse;
 
-  .card{
+  .card {
     right: unset;
     left: 60px;
   }
 }
 
-@include mobile{
-  .how-it-works .step .content .card{
+@include mobile {
+  .how-it-works .step .content .card {
     right: unset;
     left: unset;
   }

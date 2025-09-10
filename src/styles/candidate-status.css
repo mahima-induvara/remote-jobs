@@ -20,12 +20,24 @@
   --cs-code-text: #111827;
 
   /* status colors */
-  --st-applied-bg: #eff6ff;      --st-applied-fg: #1d4ed8;      --st-applied-dot: #3b82f6;
-  --st-interviewing-bg: #fffbeb; --st-interviewing-fg: #b45309; --st-interviewing-dot: #f59e0b;
-  --st-offer-bg: #f5f3ff;        --st-offer-fg: #6d28d9;        --st-offer-dot: #8b5cf6;
-  --st-hired-bg: #ecfdf5;        --st-hired-fg: #065f46;        --st-hired-dot: #10b981;
-  --st-rejected-bg: #fef2f2;     --st-rejected-fg: #991b1b;     --st-rejected-dot: #ef4444;
-  --st-default-bg: #f4f4f5;      --st-default-fg: #3f3f46;      --st-default-dot: #71717a;
+  --st-applied-bg: #eff6ff;
+  --st-applied-fg: #1d4ed8;
+  --st-applied-dot: #3b82f6;
+  --st-interviewing-bg: #fffbeb;
+  --st-interviewing-fg: #b45309;
+  --st-interviewing-dot: #f59e0b;
+  --st-pending_review-bg: #f5f3ff;
+  --st-pending_review-fg: #6d28d9;
+  --st-pending_review-dot: #8b5cf6;
+  --st-shortlisted-bg: #ecfdf5;
+  --st-shortlisted-fg: #065f46;
+  --st-shortlisted-dot: #10b981;
+  --st-rejected-bg: #fef2f2;
+  --st-rejected-fg: #991b1b;
+  --st-rejected-dot: #ef4444;
+  --st-default-bg: #f4f4f5;
+  --st-default-fg: #3f3f46;
+  --st-default-dot: #71717a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,19 +56,31 @@
     --cs-code-text: #f3f4f6;
 
     /* keep same hues, darker bases */
-    --st-applied-bg: #0b1220;      --st-applied-fg: #93c5fd;      --st-applied-dot: #60a5fa;
-    --st-interviewing-bg: #1a1405; --st-interviewing-fg: #fcd34d; --st-interviewing-dot: #f59e0b;
-    --st-offer-bg: #140b23;        --st-offer-fg: #c4b5fd;        --st-offer-dot: #8b5cf6;
-    --st-hired-bg: #041a14;        --st-hired-fg: #a7f3d0;        --st-hired-dot: #10b981;
-    --st-rejected-bg: #220b0b;     --st-rejected-fg: #fecaca;     --st-rejected-dot: #ef4444;
-    --st-default-bg: #18181b;      --st-default-fg: #e4e4e7;      --st-default-dot: #a1a1aa;
+    --st-applied-bg: #0b1220;
+    --st-applied-fg: #93c5fd;
+    --st-applied-dot: #60a5fa;
+    --st-interviewing-bg: #1a1405;
+    --st-interviewing-fg: #fcd34d;
+    --st-interviewing-dot: #f59e0b;
+    --st-pending_review-bg: #140b23;
+    --st-pending_review-fg: #c4b5fd;
+    --st-pending_review-dot: #8b5cf6;
+    --st-shortlisted-bg: #041a14;
+    --st-shortlisted-fg: #a7f3d0;
+    --st-shortlisted-dot: #10b981;
+    --st-rejected-bg: #220b0b;
+    --st-rejected-fg: #fecaca;
+    --st-rejected-dot: #ef4444;
+    --st-default-bg: #18181b;
+    --st-default-fg: #e4e4e7;
+    --st-default-dot: #a1a1aa;
   }
 }
-#status{
-    height: 75vh;
-    position: relative;
-    overflow: hidden;
-    /* background: linear-gradient(90deg, var(--cs-accent-1), var(--cs-accent-2), var(--cs-accent-3)); */
+#status {
+  height: 75vh;
+  position: relative;
+  overflow: hidden;
+  /* background: linear-gradient(90deg, var(--cs-accent-1), var(--cs-accent-2), var(--cs-accent-3)); */
 }
 #status::before,
 #status::after {
@@ -73,7 +97,12 @@
 #status::before {
   left: -120px;
   top: 10%;
-   background: linear-gradient(90deg, var(--cs-accent-1), var(--cs-accent-2), var(--cs-accent-3));
+  background: linear-gradient(
+    90deg,
+    var(--cs-accent-1),
+    var(--cs-accent-2),
+    var(--cs-accent-3)
+  );
 }
 
 #status::after {
@@ -92,13 +121,25 @@
 .cs-accent {
   height: 4px;
   width: 100%;
-  background: linear-gradient(90deg, var(--cs-accent-1), var(--cs-accent-2), var(--cs-accent-3));
+  background: linear-gradient(
+    90deg,
+    var(--cs-accent-1),
+    var(--cs-accent-2),
+    var(--cs-accent-3)
+  );
 }
 
 /* text colors */
-.cs-title { color: var(--cs-text); }
-.cs-subtle, .cs-muted { color: var(--cs-muted); }
-
+.cs-title {
+  color: var(--cs-text);
+}
+.cs-subtle,
+.cs-muted {
+  color: var(--cs-muted);
+}
+.cs-white {
+  color: var(--st-default-fg);
+}
 /* inner info blocks */
 .cs-block {
   border: 1px solid var(--cs-card-border);
@@ -124,26 +165,60 @@
 }
 
 /* status badge and variants */
-.cs-badge { border-radius: 9999px; }
-.cs-badge .cs-dot { display: inline-block; }
+.cs-badge {
+  border-radius: 9999px;
+}
+.cs-badge .cs-dot {
+  display: inline-block;
+}
 
-.cs-badge.is-applied      { background: var(--st-applied-bg);      color: var(--st-applied-fg); }
-.cs-badge.is-applied .cs-dot { background: var(--st-applied-dot); }
+.cs-badge.is-applied {
+  background: var(--st-applied-bg);
+  color: var(--st-applied-fg);
+}
+.cs-badge.is-applied .cs-dot {
+  background: var(--st-applied-dot);
+}
 
-.cs-badge.is-interviewing { background: var(--st-interviewing-bg); color: var(--st-interviewing-fg); }
-.cs-badge.is-interviewing .cs-dot { background: var(--st-interviewing-dot); }
+.cs-badge.is-interviewing {
+  background: var(--st-interviewing-bg);
+  color: var(--st-interviewing-fg);
+}
+.cs-badge.is-interviewing .cs-dot {
+  background: var(--st-interviewing-dot);
+}
 
-.cs-badge.is-offer        { background: var(--st-offer-bg);        color: var(--st-offer-fg); }
-.cs-badge.is-offer .cs-dot { background: var(--st-offer-dot); }
+.cs-badge.is-pending_review {
+  background: var(--st-pending_review-bg);
+  color: var(--st-pending_review-fg);
+}
+.cs-badge.is-pending_review .cs-dot {
+  background: var(--st-pending_review-dot);
+}
 
-.cs-badge.is-hired        { background: var(--st-hired-bg);        color: var(--st-hired-fg); }
-.cs-badge.is-hired .cs-dot { background: var(--st-hired-dot); }
+.cs-badge.is-shortlisted {
+  background: var(--st-shortlisted-bg);
+  color: var(--st-shortlisted-fg);
+}
+.cs-badge.is-shortlisted .cs-dot {
+  background: var(--st-shortlisted-dot);
+}
 
-.cs-badge.is-rejected     { background: var(--st-rejected-bg);     color: var(--st-rejected-fg); }
-.cs-badge.is-rejected .cs-dot { background: var(--st-rejected-dot); }
+.cs-badge.is-rejected {
+  background: var(--st-rejected-bg);
+  color: var(--st-rejected-fg);
+}
+.cs-badge.is-rejected .cs-dot {
+  background: var(--st-rejected-dot);
+}
 
-.cs-badge.is-default      { background: var(--st-default-bg);      color: var(--st-default-fg); }
-.cs-badge.is-default .cs-dot { background: var(--st-default-dot); }
+.cs-badge.is-default {
+  background: var(--st-default-bg);
+  color: var(--st-default-fg);
+}
+.cs-badge.is-default .cs-dot {
+  background: var(--st-default-dot);
+}
 
 /* footer */
 .cs-footer {
@@ -155,13 +230,15 @@
   color: var(--cs-muted);
   border-radius: 9999px;
 }
-.cs-social a:hover { 
-  background: rgba(0,0,0,0.06);
+.cs-social a:hover {
+  background: rgba(0, 0, 0, 0.06);
 }
 @media (prefers-color-scheme: dark) {
-  .cs-social a:hover { background: rgba(255,255,255,0.06); }
+  .cs-social a:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
 }
 .is-disabled {
-  opacity: .4;
+  opacity: 0.4;
   cursor: not-allowed;
 }

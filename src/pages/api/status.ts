@@ -31,6 +31,7 @@ export const POST: APIRoute = async ({ request }) => {
       JSON.stringify({
         id: data.id,
         name: data.fields?.candidate_name ?? null,
+        jobTitle: data.fields?.job_title ?? null,
         applyDate: data.createdTime ?? null,
         status: data.fields?.['Application Status'] ?? null
       }),
