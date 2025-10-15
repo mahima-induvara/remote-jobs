@@ -4,6 +4,7 @@ import "@styles/job.scss";
 import Layout from "@layouts/JobLayout.astro";
 import type { JobData } from "@lib/types";
 import { fetchJobsPages } from "@lib/wp";
+import insideBanner from '@assets/inside-banner.webp'
 
 // export async function getStaticPaths() {
 //   // Fetch all posts to generate static paths
@@ -62,7 +63,7 @@ const recentJobs = [
     <!-- Hero -->
     <section
       class="job-hero"
-      style={`background-image: linear-gradient(45deg, rgba(232,27,57,0.7), rgba(16,25,93,0.7)), url('https://remotejobsinasia.com/wp-content/uploads/2025/08/inside-banner.webp')`}
+      style={`background-image: linear-gradient(45deg, rgba(232,27,57,0.7), rgba(16,25,93,0.7)), url('${insideBanner.src}')`}
     >
       <div class="container">
         <h1 class="job-title">{post.title}</h1>
@@ -122,7 +123,7 @@ const recentJobs = [
           </div>
         </section>
         <!-- Recent Jobs -->
-        <section class="section recent-jobs hidden lg:block">
+        <!-- <section class="section recent-jobs hidden lg:block">
           <h3>Recent Jobs</h3>
           <ul class="recent-list">
             {recentJobs.map((r) => (
@@ -133,7 +134,7 @@ const recentJobs = [
               </li>
             ))}
           </ul>
-        </section>
+        </section> -->
       </div>
 
       <!-- Sidebar -->
@@ -156,7 +157,7 @@ const recentJobs = [
     </div>
     
 </article>
-<script>
+<script type="module">
 
   document.body.addEventListener('click', (e) => {
     if (e.target.classList.contains('btn-apply')) {

@@ -15,7 +15,7 @@ const DataSet: JobData[] = rows.map((row: any) => ({
   id: row.id ?? 0,
   title: typeof row.title === "string" ? row.title : (row.title?.rendered ?? ""),
   slug: row.slug ?? "",
-  company: row.company ?? row.meta?.company ?? "Levein Group",
+  company: row.company ?? row.meta?.company ?? "Uni Today",
   image_url: row.image_url,
   date: row.job_expires ?? "",
   level: row.job_level ?? row.meta?.job_level ?? "",
@@ -176,17 +176,17 @@ const engJobs = [
       <div class="hiw-step">
         <div class="hiw-icon">1</div>
         <h3>Browse Job Listings</h3>
-        <p>Visit our job board to explore available remote positions from UK and European tech companies.</p>
+        <p>Explore hundreds of verified internship opportunities from top companies across Sri Lanka</p>
       </div>
       <div class="hiw-step">
         <div class="hiw-icon">2</div>
         <h3>Find a Job You Like</h3>
-        <p>Browse profiles, reviews, and proposals then interview top candidates.</p>
+        <p>Filter by field, location, or stipend to discover internships that match your passion</p>
       </div>
       <div class="hiw-step">
         <div class="hiw-icon">3</div>
         <h3>Complete Profile & Apply for job</h3>
-        <p>Once your profile is complete, you can proceed with your application.</p>
+        <p>Build your student profile, upload your resume, and apply instantly with one simple click</p>
       </div>
     </div>
   </div>

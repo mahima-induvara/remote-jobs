@@ -1,5 +1,6 @@
 
 @use '@styles/mixins/mixins' as *;
+@use "@styles/variables/colors" as *;
 .jobGrid {
   // display: grid;
   // grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -11,7 +12,7 @@
   display: flex;
   align-items: center;
   border-radius: 12px;
-  background: #ffffff;
+  background: $clr-white;
   padding: 1.5rem 1.25rem;
   box-shadow: 0 12px 32px rgba(31, 41, 55, 0.07);
   transition: all 0.25s ease-in-out;
@@ -105,16 +106,16 @@
   }
   .jobApplyBtn {
     padding: 0.5rem 1rem;
-    border: 1px solid #e81b39;
+    border: 1px solid $clr-main;
     background: transparent;
-    color: #e81b39;
+    color: $clr-main;
     border-radius: 4px;
     font-size: 0.875rem;
     cursor: pointer;
     transition: background 0.2s;
 
     &:hover {
-      background: rgba(232, 27, 57, 0.05);
+      background: rgba(27, 109, 232, 0.05);
     }
   }
   @include mobile {

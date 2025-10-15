@@ -12,6 +12,7 @@ console.log(idParam);
 let candidate = {
   name: "",
   applyDate: "",
+  jobTitle: "",
   status: "",
   candidateId: "",
   socials: {
@@ -38,6 +39,7 @@ if (idParam) {
         ...candidate,
         name: data.name ?? "",
         applyDate: data.applyDate ?? "",
+        jobTitle: data.jobTitle ?? "",
         status: data.status ?? "",
         candidateId: data.id ?? "",
       };

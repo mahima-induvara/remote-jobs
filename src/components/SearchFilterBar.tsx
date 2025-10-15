@@ -95,7 +95,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({ onSearch }) => {
             <div className="flex flex-col sm:flex-row gap-3 items-start lg:items-center">
               <div className="flex gap-2 flex-wrap">
                 <button type="button" className="btn btn-secondary" onClick={toggleAdvancedFilters}>
-                  Filters ▾
+                  Filters {showAdvanced ? <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="16" height="16" x="0" y="0" viewBox="0 0 24 24" ><g><path d="M17.293 15.207 12 9.914l-5.293 5.293-1.414-1.414L10.586 8.5a2 2 0 0 1 2.828 0l5.293 5.293Z" data-name="01 align center" fill="#000000" opacity="1" data-original="#000000" ></path></g></svg> : <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="16" height="16" x="0" y="0" viewBox="0 0 24 24"><g><path d="M12 15.5a1.993 1.993 0 0 1-1.414-.585L5.293 9.621l1.414-1.414L12 13.5l5.293-5.293 1.414 1.414-5.293 5.293A1.993 1.993 0 0 1 12 15.5Z" data-name="01 align center" fill="#000000" opacity="1" data-original="#000000"></path></g></svg>} 
                 </button>
                 <button type="submit" className="btn btn-primary">Search</button>
                 <button type="reset" className="text-sm p-2 text-orange-600 cursor-pointer clear_button" onClick={handleReset} >Clear</button>

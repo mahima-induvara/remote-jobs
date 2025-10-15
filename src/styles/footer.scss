@@ -142,7 +142,7 @@ $transition: all .25s ease;
             height: 14px;
           }
           &:hover {
-            opacity: 0.85;
+            background-color: $clr-main;
           }
         }
       }

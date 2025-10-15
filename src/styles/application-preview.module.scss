@@ -2,7 +2,7 @@
   color: #1f2937;
 
   &__header {
-    background: linear-gradient(45deg, #e81b39, #10195d);
+    background: linear-gradient(45deg, #0078c1, #10195d);
     padding: 5rem 2rem;
     display: flex;
     align-items: center;
@@ -18,9 +18,9 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background-color 0.2s;
       &:hover {
-        background: #f3f4f6;
+        background-color: #f3f4f6;
       }
     }
 

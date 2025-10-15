@@ -105,7 +105,7 @@ export default function LoginRegister() {
     if (isLogin) {
       try {
         const res = await axios.get(
-          "http://remoteweb.test/wp-json/remoteasia/v2/login",
+          "https://unijobs.my.id/wp-json/remoteasia/v2/login",
           {
             params: {
               username_or_email: loginData.username,
@@ -221,7 +221,7 @@ export default function LoginRegister() {
                         Having trouble in sign in?
                       </span>
                       <span>
-                        <a href="tel:+1234567890" className="text-sm text-[#e81b39] hover:underline">
+                        <a href="tel:+1234567890" className="text-sm text-[#0078c1] hover:underline">
                           Reset your password
                         </a>
                       </span>

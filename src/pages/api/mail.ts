@@ -8,7 +8,7 @@ export const POST: APIRoute = async ({ request }) => {
   const appPassword = import.meta.env.WP_APP_A_PASSWORD;
   const token = btoa(`${username}:${appPassword}`);
   try {
-     await axios.post("http://remoteweb.test/wp-json/remoteasia/v2/automate", mailData, {
+     await axios.post("https://unijobs.my.id/wp-json/remoteasia/v2/automate", mailData, {
         headers: {
           Authorization: `Basic ${token}`,
           "Content-Type": "application/json",

@@ -3,7 +3,7 @@ import type { APIRoute } from "astro";
 import axios from "axios";
 
 export const POST: APIRoute = async ({ request }) => {
-    const WP_BASE = import.meta.env.WP_BASE ?? 'http://remoteweb.test/';
+    const WP_BASE = import.meta.env.WP_BASE ?? 'https://unijobs.my.id/';
     const body = await request.json();
     const username = import.meta.env.WP_USER;
     const appPassword = import.meta.env.WP_APP_PASSWORD;

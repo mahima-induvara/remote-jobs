@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import Logo from "@assets/Remote-jobs-logo.png";
+import Logo from "@assets/logoooooooo.png";
 import { escapeHTML } from "astro/runtime/server/escape.js";
 const menuItems = [
   { label: "Jobs", href: "/" },
   { label: "About", href: "/about-us" },
-  { label: "Our Services", href: "/our-services" },
+  // { label: "Our Services", href: "/our-services" },
   { label: "How It Works", href: "/how-it-works" },
-  { label: "Tax Optimized Income", href: "/tax-optimized-income" },
+  // { label: "Tax Optimized Income", href: "/tax-optimized-income" },
   { label: "FAQ's", href: "/faqs" },
 ];
 
@@ -70,7 +70,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center gap-2">
-              <img src={Logo.src} alt="Remote Jobs In Asia" className="h-16 w-auto" />
+              <img src={Logo.src} alt="Uni Jobs in Sri Lanka" className="h-16 w-auto" />
             </a>
           </div>
 

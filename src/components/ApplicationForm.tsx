@@ -142,7 +142,7 @@ export default function ApplicationForm() {
       try {
         await axios
           .get(
-            `http://remoteweb.test/wp-json/remoteasia/v2/questions/?job-id=${jobId}`,
+            `https://unijobs.my.id/wp-json/remoteasia/v2/questions/?job-id=${jobId}`,
             {
               headers: {
                 "Content-Type": "application/json",
@@ -262,7 +262,7 @@ export default function ApplicationForm() {
     const token = btoa(`${username}:${appPassword}`);
 
     const res = await fetch(
-      "http://remoteweb.test/wp-json/remoteasia/v1/upload-resume",
+      "https://unijobs.my.id/wp-json/remoteasia/v1/upload-resume",
       {
         method: "POST",
         headers: {

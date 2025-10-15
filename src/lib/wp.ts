@@ -1,5 +1,5 @@
 // src/lib/wp.ts
-const WP_BASE = import.meta.env.WP_BASE ?? 'http://remoteweb.test/';
+const WP_BASE = import.meta.env.WP_BASE ?? 'https://unijobs.my.id/';
 import type {JobData} from '@lib/types'
 // export interface Post {
 //   id: number;

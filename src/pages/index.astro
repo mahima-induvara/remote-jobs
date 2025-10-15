@@ -8,22 +8,23 @@ import type { Categories } from "@lib/types";
 import { fetchJobs } from "@lib/wp";
 import { fetchCategories } from "@lib/wp";
 import { getCategoryImage } from "../utils/categories";
+import DataSet from "../data/jobs.json";
 
-const rows = await fetchJobs(1, 12);
+// const rows = await fetchJobs(1, 12);
 const categories = await fetchCategories();
 
-const DataSet: JobData[] = rows.map((row: any) => ({
-  id: row.id ?? 0,
-  title:
-    typeof row.title === "string" ? row.title : (row.title?.rendered ?? ""),
-  slug: row.slug ?? "",
-  company: row.company ?? row.meta?.company ?? "Levein Group",
-  image_url: row.image_url,
-  date: row.job_expires ?? "",
-  level: row.job_level ?? row.meta?.job_level ?? "",
-  type: row.job_listing_type ?? row.meta?.job_listing_type ?? "",
-  experience: row.job_experience ?? row.meta?.job_experience ?? "",
-}));
+// const DataSet: JobData[] = rows.map((row: any) => ({
+//   id: row.id ?? 0,
+//   title:
+//     typeof row.title === "string" ? row.title : (row.title?.rendered ?? ""),
+//   slug: row.slug ?? "",
+//   company: row.company ?? row.meta?.company ?? "Uni Today",
+//   image_url: row.image_url,
+//   date: row.job_expires ?? "",
+//   level: row.job_level ?? row.meta?.job_level ?? "",
+//   type: row.job_listing_type ?? row.meta?.job_listing_type ?? "",
+//   experience: row.job_experience ?? row.meta?.job_experience ?? "",
+// }));
 
 const CatLogs: Categories[] = categories.map((cat) => ({
   id: cat.id,
@@ -33,29 +34,29 @@ const CatLogs: Categories[] = categories.map((cat) => ({
   svg: getCategoryImage(cat.slug),
 }));
 
-const engJobs = [
-  {
-    id: 4,
-    title: "Senior .NET Software Engineer",
-    company: "CodeFactory",
-    salary: "1k-3k USD/mo",
-    location: "Remote",
-  },
-  {
-    id: 5,
-    title: "Senior Golang Developer",
-    company: "Prime Holdings JSC",
-    salary: "1.5k-3k USD/mo",
-    location: "Remote",
-  },
-  {
-    id: 6,
-    title: "Senior AI Engineer",
-    company: "InnovateAI",
-    salary: "2k-4k USD/mo",
-    location: "Remote",
-  },
-];
+// const engJobs = [
+//   {
+//     id: 4,
+//     title: "Senior .NET Software Engineer",
+//     company: "CodeFactory",
+//     salary: "1k-3k USD/mo",
+//     location: "Remote",
+//   },
+//   {
+//     id: 5,
+//     title: "Senior Golang Developer",
+//     company: "Prime Holdings JSC",
+//     salary: "1.5k-3k USD/mo",
+//     location: "Remote",
+//   },
+//   {
+//     id: 6,
+//     title: "Senior AI Engineer",
+//     company: "InnovateAI",
+//     salary: "2k-4k USD/mo",
+//     location: "Remote",
+//   },
+// ];
 ---
 
 <Layout>
@@ -75,7 +76,7 @@ const engJobs = [
               <h3 class="job-title">{job.title}</h3>
               <p class="job-company">{job.company}</p>
               <div class="mt-1 flex flex-wrap gap-2">
-              <span class="px-3 py-1 text-xs font-medium bg-[#e81b390d] text-[#e81b39] rounded-full">
+              <span class="px-3 py-1 text-xs font-medium bg-[#e81b390d] text-[#0078c1] rounded-full">
                {job.level}
               </span>
               <span class="px-3 py-1 text-xs font-medium bg-[#514e8529] text-[#514e85] rounded-full">
@@ -131,24 +132,21 @@ const engJobs = [
           <div class="hiw-icon">1</div>
           <h3>Browse Job Listings</h3>
           <p>
-            Visit our job board to explore available remote positions from UK
-            and European tech companies.
+            Explore hundreds of verified internship opportunities from top companies across Sri Lanka
           </p>
         </div>
         <div class="hiw-step">
           <div class="hiw-icon">2</div>
           <h3>Find a Job You Like</h3>
           <p>
-            Browse profiles, reviews, and proposals then interview top
-            candidates.
+            Filter by field, location, or stipend to discover internships that match your passion
           </p>
         </div>
         <div class="hiw-step">
           <div class="hiw-icon">3</div>
           <h3>Complete Profile & Apply for job</h3>
           <p>
-            Once your profile is complete, you can proceed with your
-            application.
+            Build your student profile, upload your resume, and apply instantly with one simple click
           </p>
         </div>
       </div>

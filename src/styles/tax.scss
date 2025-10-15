@@ -29,7 +29,8 @@ $radius: 10px;
       font-weight: 600;
       transition: background 0.2s;
       &:hover {
-        background: $clr-accent;
+        background: rgba(0, 119, 193, 0.897);
+        border-color: rgba(0, 119, 193, 0.897);
       }
     }
   }

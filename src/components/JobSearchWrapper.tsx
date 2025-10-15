@@ -37,7 +37,7 @@ const JobSearchWrapper: React.FC<JobSearchWrapperProps> = ({ initialData }) => {
   const handleSearch = async (keyword: string, location: string, industry: string, type: string, level:string, experience:string) => {
     try {
       const res = await fetch(
-        `http://remoteweb.test/wp-json/remoteasia/v2/filters?keyword=${keyword}&location=${location}&industry=${industry}&type=${type}&level=${level}&experience=${experience}`,
+        `https://unijobs.my.id/wp-json/remoteasia/v2/filters?keyword=${keyword}&location=${location}&industry=${industry}&type=${type}&level=${level}&experience=${experience}`,
         {
           method: "GET",
           headers: {
@@ -47,7 +47,7 @@ const JobSearchWrapper: React.FC<JobSearchWrapperProps> = ({ initialData }) => {
       );
       const data: APIData[] = await res.json();
       const transformedData = transformAPIData(data);
-      console.log("Search results:", transformedData);
+      //console.log("Search results:", transformedData);
       setJobData(transformedData);
     } catch (err) {
       console.error("Search error:", err);
@@ -59,12 +59,10 @@ const JobSearchWrapper: React.FC<JobSearchWrapperProps> = ({ initialData }) => {
       <section className="mt-[80px] hero px-4 py-20 text-center text-white">
         <div className="max-w-7xl mx-auto">
           <h1 className="hero-title mb-4">
-            Find The Best Paid Remote Jobs In Asia
+            Find The Best Paid Internships in Sri Lanka
           </h1>
           <p className="hero-subtitle mb-8">
-            Exciting opportunities across Software, Design, IT, Marketing,
-            Finance, HR & Customer support with leading employers in UK &
-            Europe.
+            Discover top internship opportunities from leading companies across Sri Lanka.
           </p>
         </div>
         <SearchFilterBar onSearch={handleSearch} />
