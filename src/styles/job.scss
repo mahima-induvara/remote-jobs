@@ -184,7 +184,7 @@ $shadow: 0 24px 64px rgba(31, 41, 55, 0.04);
         }
         .btn-apply {
           width: 100%;
-          background: $clr-accent;
+          background: $clr-main;
           color: #fff;
           border: none;
           padding: 0.75rem;
@@ -193,7 +193,7 @@ $shadow: 0 24px 64px rgba(31, 41, 55, 0.04);
           cursor: pointer;
           transition: background 0.2s ease;
           &:hover {
-            background: linear-gradient(45deg, #e81b39 0%, #10195D 71%);
+            background: linear-gradient(45deg, #0078c1c7 0%, #10195dd1 71%);
           }
         }
       }
@@ -264,7 +264,7 @@ $shadow: 0 24px 64px rgba(31, 41, 55, 0.04);
 .job-footer{
     .btn-apply {
           width: fit-content;
-          background: $clr-accent;
+          background: $clr-main;
           color: #fff;
           border: none;
           padding: 0.75rem 2rem;
@@ -273,7 +273,7 @@ $shadow: 0 24px 64px rgba(31, 41, 55, 0.04);
           cursor: pointer;
           transition: background 0.2s ease;
           &:hover {
-            background: linear-gradient(45deg, #e81b39 0%, #10195D 71%);
+            background: linear-gradient(45deg, #0078c1c7 0%, #10195dd1 71%);
           }
         }
         .back-to-job {

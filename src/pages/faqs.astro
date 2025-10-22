@@ -7,17 +7,17 @@ import HeroSection from '@components/HeroSection.astro';
 
 const faqsGeneral  = [
   {
-    question: "What is RemoteJobsInAsia.com?",
+    question: "What is unitoday.lk?",
     answer:
-      "A: RemoteJobsInAsia.com is a specialized job platform connecting eligible individuals in Sri Lanka with remote job opportunities in UK and European tech companies, particularly innovative startups and AI companies.",
+      "A: unitoday.lk is a specialized job platform connecting eligible individuals in Sri Lanka with remote job opportunities in UK and European tech companies, particularly innovative startups and AI companies.",
   },
   {
-    question: "Is RemoteJobsInAsia.com only for IT professionals?",
+    question: "Is unitoday.lk only for IT professionals?",
     answer:
       "A: While we have many opportunities in the tech sector, we also cater to various other professions including finance, marketing, HR, design, and administrative roles.",
   },
   {
-    question: "Do I need to pay to use RemoteJobsInAsia.com?",
+    question: "Do I need to pay to use unitoday.lk?",
     answer:
       "A: No, our platform is completely free for job seekers. We make our revenue through our partnerships with employers.",
   },
@@ -30,7 +30,7 @@ const faqsGeneral  = [
 
 const faqEligibility = [
     {
-        question: "Who can apply for jobs on RemoteJobsInAsia.com?",
+        question: "Who can apply for jobs on unitoday.lk?",
         answer:
         "A: Our jobs are open to individuals who are either residents of Sri Lanka or have the right to work in Sri Lanka. This includes Sri Lankan citizens, permanent residents, and those with valid work visas",
     },
@@ -58,7 +58,7 @@ const faqEligibility = [
 
 const faqProcess = [
     {
-        question: "How do I start my job search on RemoteJobsInAsia.com?",
+        question: "How do I start my job search on unitoday.lk?",
         answer:
         "A: Simply browse our job listings without signing up. When you find a job you'd like to apply for, you'll be prompted to create an account and complete your profile.",
     },
@@ -76,7 +76,7 @@ const faqProcess = [
 
 const faqApplication = [
     {
-        question: "How do I apply for a job through RemoteJobsInAsia.com?",
+        question: "How do I apply for a job through unitoday.lk?",
         answer:
         "A: Once you've found a job you're interested in, click the “Apply” button on the job listing. You'll be guided through the application process, which typically involves submitting your resume and answering any specific questions the employer has set.",
     },
@@ -112,7 +112,7 @@ const faqRemote  = [
 
 const faqSupport  = [
     {
-        question: "Does RemoteJobsInAsia.com offer any support for interview preparation?",
+        question: "Does unitoday.lk offer any support for interview preparation?",
         answer:
         "A: Yes, we provide various resources including interview guides, mock interview sessions, and tips on navigating cultural differences when interviewing with European companies.",
     },
@@ -138,18 +138,18 @@ const AllFaqs = [
     title: "Eligibility and Requirements",
     faqs: faqEligibility,
   },
-  {
-    title: "Job Search Process",
-    faqs: faqProcess,
-  },
+  // {
+  //   title: "Job Search Process",
+  //   faqs: faqProcess,
+  // },
   {
     title: "Application Process",
     faqs: faqApplication,
   },
-  {
-    title: "Remote Work and Employment",
-    faqs: faqRemote,
-  },
+  // {
+  //   title: "Remote Work and Employment",
+  //   faqs: faqRemote,
+  // },
   {
     title: "Support and Resources",
     faqs: faqSupport,
@@ -164,7 +164,7 @@ const AllFaqs = [
 <section class="faq-section py-16">
   <div class="max-w-7xl mx-auto px-4">
     <p class="intro">
-      Welcome to RemoteJobsInAsia.com's FAQ page. Here, we answer common questions about our platform and how we help eligible individuals in Sri Lanka find remote jobs with UK and European tech companies.
+      Welcome to unitoday.lk's FAQ page. Here, we answer common questions about our platform and how we help eligible individuals in Sri Lanka find remote jobs with UK and European tech companies.
     </p>
     {AllFaqs.map((all, index) => (
     <div id={`faq-${index}`}>

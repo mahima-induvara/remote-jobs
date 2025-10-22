@@ -92,6 +92,7 @@ section.layer::after {
   align-items: center;
   z-index: 99999;
 }
+
 #Reactpreloader {
   position: fixed;
   top: 0;
